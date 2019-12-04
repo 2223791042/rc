@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="guet.hxm.rc.dao.PartnerMapper" >
+  <resultMap id="BaseResultMap" type="guet.hxm.rc.entity.Partner" >
+    <id column="partner_id" property="partnerId" jdbcType="BIGINT" />
+    <result column="partner_name" property="partnerName" jdbcType="VARCHAR" />
+    <result column="partner_link_addr" property="partnerLinkAddr" jdbcType="VARCHAR" />
+    <result column="partner_is_blank" property="partnerIsBlank" jdbcType="VARCHAR" />
+    <result column="partner_img" property="partnerImg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    partner_id, partner_name, partner_link_addr, partner_is_blank, partner_img
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="guet.hxm.rc.entity.PartnerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from partner
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from partner
+    where partner_id = #{partnerId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from partner
+    where partner_id = #{partnerId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="guet.hxm.rc.entity.PartnerExample" >
+    delete from partner
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="guet.hxm.rc.entity.Partner" >
+    insert into partner (partner_id, partner_name, partner_link_addr, 
+      partner_is_blank, partner_img)
+    values (#{partnerId,jdbcType=BIGINT}, #{partnerName,jdbcType=VARCHAR}, #{partnerLinkAddr,jdbcType=VARCHAR}, 
+      #{partnerIsBlank,jdbcType=VARCHAR}, #{partnerImg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="guet.hxm.rc.entity.Partner" >
+    insert into partner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="partnerId != null" >
+        partner_id,
+      </if>
+      <if test="partnerName != null" >
+        partner_name,
+      </if>
+      <if test="partnerLinkAddr != null" >
+        partner_link_addr,
+      </if>
+      <if test="partnerIsBlank != null" >
+        partner_is_blank,
+      </if>
+      <if test="partnerImg != null" >
+        partner_img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="partnerId != null" >
+        #{partnerId,jdbcType=BIGINT},
+      </if>
+      <if test="partnerName != null" >
+        #{partnerName,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerLinkAddr != null" >
+        #{partnerLinkAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerIsBlank != null" >
+        #{partnerIsBlank,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerImg != null" >
+        #{partnerImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="guet.hxm.rc.entity.PartnerExample" resultType="java.lang.Integer" >
+    select count(*) from partner
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update partner
+    <set >
+      <if test="record.partnerId != null" >
+        partner_id = #{record.partnerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.partnerName != null" >
+        partner_name = #{record.partnerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partnerLinkAddr != null" >
+        partner_link_addr = #{record.partnerLinkAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partnerIsBlank != null" >
+        partner_is_blank = #{record.partnerIsBlank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partnerImg != null" >
+        partner_img = #{record.partnerImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update partner
+    set partner_id = #{record.partnerId,jdbcType=BIGINT},
+      partner_name = #{record.partnerName,jdbcType=VARCHAR},
+      partner_link_addr = #{record.partnerLinkAddr,jdbcType=VARCHAR},
+      partner_is_blank = #{record.partnerIsBlank,jdbcType=VARCHAR},
+      partner_img = #{record.partnerImg,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="guet.hxm.rc.entity.Partner" >
+    update partner
+    <set >
+      <if test="partnerName != null" >
+        partner_name = #{partnerName,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerLinkAddr != null" >
+        partner_link_addr = #{partnerLinkAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerIsBlank != null" >
+        partner_is_blank = #{partnerIsBlank,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerImg != null" >
+        partner_img = #{partnerImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where partner_id = #{partnerId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="guet.hxm.rc.entity.Partner" >
+    update partner
+    set partner_name = #{partnerName,jdbcType=VARCHAR},
+      partner_link_addr = #{partnerLinkAddr,jdbcType=VARCHAR},
+      partner_is_blank = #{partnerIsBlank,jdbcType=VARCHAR},
+      partner_img = #{partnerImg,jdbcType=VARCHAR}
+    where partner_id = #{partnerId,jdbcType=BIGINT}
+  </update>
+</mapper>

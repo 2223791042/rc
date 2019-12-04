@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script th:src="@{/js/jquery-2.0.3.min.js}" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/common.css}" />
+		<!--引入第三方字体图标插件库-->
+		<link rel="stylesheet" th:href="@{/css/font/iconfont.css}" />
+		<link th:href="@{/css/styles.min.css}" rel="stylesheet">
+		<link rel="stylesheet" th:href="@{/css/loginDialog.css}" />
+		<link rel="shortcut icon" th:href="@{/imgs/nav-top/icon.png}"  type="image/x-icon">
+		<!--导航栏的跳转-->
+		<script type="text/javascript" th:src="@{/js/pageTurn.js}" ></script>
+		<style>
+			.btn-submit {
+				background: #5fbd5f !important;
+				color: #fff !important;
+				border: #f9a228;
+			}
+			input[type="submit"] {
+				display: inline-block;
+				line-height: 1;
+				white-space: nowrap;
+				cursor: pointer;
+				background: #fff;
+				border: 1px solid #dcdfe6;
+				color: #606266;
+				-webkit-appearance: none;
+				text-align: center;
+				box-sizing: border-box;
+				outline: none;
+				margin: 0;
+				transition: .1s;
+				font-weight: 500;
+				-moz-user-select: none;
+				-webkit-user-select: none;
+				-ms-user-select: none;
+				padding: 12px 20px;
+				font-size: 14px;
+				border-radius: 4px
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="head">
+			<div class="leftinfor">
+				<span class="icon-yonghu"></span><span th:text="${recUser.email}"></span>
+			</div>
+			<div class="rightinfor">
+				<a href="#" id="change">修改密码</a>
+				<a th:href="@{/rec/logout}">退出</a>
+			</div>
+		</div>
+		<img th:src="@{/imgs/nav-top/logo.png}" style="padding: 20px 0 26px 142px" />
+		<!--  左侧导航栏-->
+		<form class="warp" method="post" id="applyForm" enctype="multipart/form-data">
+			<ul>
+				<li class="title-list active" style="margin-top: 0;">个人信息</li>
+				<li class="title-list">个人简介</li>
+				<li class="title-list">教育背景</li>
+				<li class="title-list">语言技能和考试成绩</li>
+				<li class="title-list">项目经验</li>
+				<li class="title-list">留学经历</li>
+				<li class="title-list">荣誉奖项</li>
+				<li class="title-list">纪律处分</li>
+				<li class="title-list">推荐人</li>
+				<li class="title-list">上传附件</li>
+				<li class="title-list">声明</li>
+			</ul>
+			<div class="content show">
+				<!--1、个人信息-->
+				<div class="Personal-information">
+					<div class="title font26 bg1">
+						个人信息
+					</div>
+					<div class="notic">
+						填写须知：请认真填写以下的个人信息，所填写的信息应与身份证的信息一致。
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>姓名</span>
+								<input type="text" th:value="${apply.name}" name="name" id="name" value="" />
+							</div>
+							<div>
+								<span>性别</span>
+								<select name="sex">
+									<option value="F" th:selected="${apply.sex == 'F'}">女</option>
+									<option value="M" th:selected="${apply.sex == 'M'}">男</option>
+								</select>
+							</div>
+							<div>
+								<span>出生日期</span>
+								<input type="date" th:value="${#dates.format(recUser.birthday,'yyyy-MM-dd')}" name="birthday" id="birthday" value="" />
+							</div>
+						</div>
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>民族</span>
+								<input type="text" th:value="${apply.nation}" name="nation" id="nation" value="" />
+							</div>
+							<div>
+								<span>籍贯</span>
+								<input type="text" name="nativeAdd" th:value="${apply.nativeAdd}" id="nativeAdd" value="" />
+							</div>
+							<div>
+								<span>目前所在地</span>
+								<input type="text" name="domicile" th:value="${apply.domicile}" id="domicile" value="" />
+							</div>
+						</div>
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>身份证号码</span>
+								<input type="text" name="cardId" th:value="${recUser.cardId}" id="cardId" value="" />
+							</div>
+							<div>
+								<span>家庭住址</span>
+								<input type="text" name="homeAdd" id="homeAdd" th:value="${apply.homeAdd}" value="" />
+							</div>
+							<div></div>
+						</div>
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>邮箱</span>
+								<input type="text" name="email" id="email" th:value="${recUser.email}" readonly value="" />
+							</div>
+							<div>
+								<span>联系电话</span>
+								<input type="text" name="telephone" id="telephone" th:value="${apply.telephone}" value="" />
+							</div>
+							<div></div>
+						</div>
+					</div>
+					<div class="title font26 bg1">
+						紧急联系人
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>与本人关系</span>
+								<input type="text" name="agentRelative" th:value="${apply.agentRelative}" id="agentRelative" value="" />
+							</div>
+							<div>
+								<span>姓名</span>
+								<input type="text" name="agentName" th:value="${apply.agentName}" id="agentName" value="" />
+							</div>
+							<div></div>
+						</div>
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>联系电话</span>
+								<input type="text" name="agentTelephone" th:value="${apply.agentTelephone}" id="agentTelephone" value="" />
+							</div>
+							<div></div>
+						</div>
+					</div>
+					<div class="btn-warp">
+						<input type="button" value="下一个" class="preview" onclick="pageTurn(1)" />
+
+					</div>
+				</div>
+			</div>
+			<!--2、传记简介-->
+			<div class="content">
+				<div class="Personal-information">
+					<div class="title font26 bg1">
+						传记简介
+					</div>
+					<div class="input-title notic">
+						请您用500字以内的文字，介绍您在学术、课外活动和专业经验方面的主要成就。
+					</div>
+					<textarea name="academicAchi" rows="" cols="" th:text="${apply.academicAchi}"></textarea>
+					<div class="input-title notic">
+						关于个人经历的在线资料（网址）
+					</div>
+					<input type="text" name="onlineData" id="onlineData" th:value="${apply.onlineData}" value="" />
+					<div class="input-title notic">
+						请您用500字以内的文字简单的描述自己！
+					</div>
+					<textarea name="introduce" rows="" cols="" th:text="${apply.introduce}"></textarea>
+					<div class="btn-warp">
+						<input type="button" value="前一项" class="prev" onclick="pageTurn(0)" />
+						<input type="button" value="下一个" class="preview" onclick="pageTurn(2)" />
+					</div>
+				</div>
+			</div>
+			<!--3、教育背景-->
+			<div class="content">
+				<div class="Personal-information">
+					<div class="title font26 bg1">
+						教育背景
+					</div>
+					<div class=" notic">
+						请按时间顺序列出您的教育历史记录，从您最近获得的学位开始。仅列出获得的实际学位或您将获得的学位; 不要列出任何短期研究或证书课程。
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>学校名称</span>
+								<input type="text" name="school" th:value="${apply.school}" id="school" value="" />
+							</div>
+							<div>
+								<span>学历</span>
+								<select name="education">
+									<option value="0" th:selected="${apply.education == '0'}">大专</option>
+									<option value="1" th:selected="${apply.education == '1'}">本科</option>
+									<option value="2" th:selected="${apply.education == '2'}">研究生</option>
+									<option value="3" th:selected="${apply.education == '3'}">博士</option>
+								</select>
+							</div>
+							<div>
+							</div>
+						</div>
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>研究领域</span>
+								<input type="text" name="researchField" th:value="${apply.researchField}" id="researchField" value="" />
+							</div>
+							<div>
+								<span>时间</span>
+								<input type="date" name="startEduTime" th:value="${#dates.format(apply.startEduTime,'yyyy-MM-dd')}" id="startEduTime" value="" />
+							</div>
+							<div>
+								<span>至</span>
+								<input type="date" name="endEduTime" id="endEduTime" th:value="${#dates.format(apply.endEduTime,'yyyy-MM-dd')}" value="" />
+							</div>
+						</div>
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>学位状态</span>
+								<select name="degreeStatus">
+									<option value="Y" th:selected="${apply.degreeStatus == 'Y'}">已完成</option>
+									<option value="N" th:selected="${apply.degreeStatus == 'N'}">进行中</option>
+								</select>
+							</div>
+							<div>
+							</div>
+							<div></div>
+						</div>
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>学位名称</span>
+								<input type="text" th:value="${apply.degreeName}" name="degreeName" id="degreeName" value="" />
+							</div>
+							<div>
+							</div>
+							<div></div>
+						</div>
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>课程学分</span>
+								<input type="text" name="courceScore" th:value="${apply.courceScore}" id="courceScore" value="" />
+							</div>
+							<div>
+							</div>
+							<div></div>
+						</div>
+					</div>
+					<div class="btn-warp">
+						<input type="button" value="前一项" class="prev" onclick="pageTurn(1)" />
+						<input type="button" value="下一个" class="preview" onclick="pageTurn(3)" />
+					</div>
+				</div>
+			</div>
+			<!--4、英语语言能力-->
+			<div class="content">
+				<div class="Personal-information">
+					<div class="title font26 bg1">
+						英语语言能力
+					</div>
+					<div>
+						<div class="notic">
+							"要满足英语语言要求，您必须满足以下条件之一：<br /> 1）母语为英语;
+							<br /> 2）在本科或研究生水平的英语课程中学习至少两年; <br /> 3）提交官方英语水平考试成绩。
+						</div>
+					</div>
+					<div class="input-warp">
+						<div class="input-title notic">
+							*本科学位的主要教学语言是什么：
+						</div>
+						<div class="input-item">
+							<div style="margin-left: 10px;">
+								<input type="text" name="mainLanguage" th:value="${apply.mainLanguage}" id="mainLanguage" value="" />
+							</div>
+							<div>
+							</div>
+							<div>
+							</div>
+						</div>
+					</div>
+					<div class="title font26 bg1">
+						外语水平
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>语言名称</span>
+								<input type="text" name="languageName" th:value="${apply.languageName}" id="languageName" value="" />
+							</div>
+							<div>
+								<span>考试时间</span>
+								<input type="date" name="testTime" th:value="${#dates.format(apply.testTime,'yyyy-MM-dd')}" id="testTime" value="" />
+							</div>
+							<div>
+								<span style="letter-spacing: 2px;">(年/月/日)</span>
+							</div>
+						</div>
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>成绩</span>
+								<input type="text" name="languageScore" th:value="${apply.languageScore}" id="languageScore" value="" />
+							</div>
+							<div>
+							</div>
+							<div></div>
+						</div>
+					</div>
+					<div class="btn-warp">
+						<input type="button" value="前一项" class="prev" onclick="pageTurn(2)" />
+						<input type="button" value="下一个" class="preview" onclick="pageTurn(4)" />
+					</div>
+				</div>
+			</div>
+
+			<!--5、项目经历-->
+			<div class="content">
+				<div class="Personal-information">
+					<div class="title font26 bg1">
+						项目经验
+					</div>
+					<div class="notic">
+						请仅按时间顺序列出您最近的工作经历，从最新的开始。只列出全职工作。不要列出兼职工作，实习或志愿者机会
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>名称</span>
+								<input type="text" name="projectName" th:value="${apply.projectName}" id="projectName" value="" />
+							</div>
+							<div>
+								<span>时间</span>
+								<input type="date" name="projectStartTime" id="projectStartTime" th:value="${#dates.format(apply.projectStartTime,'yyyy-MM-dd')}" value="" />
+							</div>
+							<div>
+								<span>至</span>
+								<input type="date" name="projectEndTime" id="projectEndTime" value="" th:value="${#dates.format(apply.projectEndTime,'yyyy-MM-dd')}" />
+							</div>
+						</div>
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>地点</span>
+								<input type="text" name="projectAdd" th:value="${apply.projectAdd}" id="projectAdd" value="" />
+							</div>
+							<div>
+							</div>
+							<div>
+							</div>
+						</div>
+					</div>
+					<div class="input-warp">
+						<div class="input-title notic">角色和责任的简要说明</div>
+						<textarea name="projectExplain" rows="" cols="" th:text="${apply.projectExplain}"></textarea>
+					</div>
+					<div class="btn-warp">
+						<input type="button" value="前一项" class="prev" onclick="pageTurn(3)" />
+						<input type="button" value="下一个" class="preview" onclick="pageTurn(5)" />
+					</div>
+				</div>
+			</div>
+			<!--6、留学经历-->
+			<div class="content">
+				<div class="Personal-information">
+					<div class="title font26 bg1">
+						留学经历
+					</div>
+					<div class="notic">
+						列出您在离开本国两个月以上的最相关的学术，专业或志愿者经历。包括地点，国外时间的原因和日期
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>经历类型</span>
+								<select name="experienceType">
+									<option value="0" th:selected="${apply.experienceType == '0'}">学术研究</option>
+									<option value="1" th:selected="${apply.experienceType == '1'}">专业经历</option>
+									<option value="2" th:selected="${apply.experienceType == '2'}">志愿活动</option>
+								</select>
+							</div>
+							<div>
+								<span>时间</span>
+								<input type="date" name="experStartTime" th:value="${#dates.format(apply.experStartTime,'yyyy-MM-dd')}" id="experStartTime" value="" />
+							</div>
+							<div>
+								<span>至</span>
+								<input type="date" name="experEndTime" id="experEndTime" value="" th:value="${#dates.format(apply.experEndTime,'yyyy-MM-dd')}" />
+							</div>
+						</div>
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>地点</span>
+								<input type="text" name="experienceAdd" id="experienceAdd" value="" th:value="${apply.experienceAdd}" />
+							</div>
+							<div>
+							</div>
+							<div>
+							</div>
+						</div>
+					</div>
+					<div class="input-warp">
+						<div class="input-title notic">简要说明</div>
+						<textarea name="experienceExplain" rows="" cols="" th:text="${apply.experienceExplain}"></textarea>
+					</div>
+					<div class="btn-warp">
+						<input type="button" value="前一项" class="prev" onclick="pageTurn(4)" />
+						<input type="button" value="下一个" class="preview" onclick="pageTurn(6)" />
+					</div>
+				</div>
+			</div>
+			<!--7、荣誉奖项-->
+			<div class="content">
+				<div class="Personal-information">
+					<div class="title font26 bg1">
+						荣誉奖项
+					</div>
+					<div class="notic">
+						列出最多十个奖项，奖项，奖学金，出版物或您收到的特殊表彰。按重要性降序列出，包括姓名和奖励，授予机构或机 构，以及每项成就的日期。例如：ABC奖学金（X大学），2017-2018。每行只列出一个奖项/表彰。将此视为简历/简历的重点。
+					</div>
+					<div class="input-warp">
+						<textarea name="honor" rows="" cols="" th:text="${apply.honor}"></textarea>
+					</div>
+					<div class="btn-warp">
+						<input type="button" value="前一项" class="prev" onclick="pageTurn(5)" />
+						<input type="button" value="下一个" class="preview" onclick="pageTurn(7)" />
+
+					</div>
+				</div>
+			</div>
+			<!--纪律处分-->
+			<div class="content">
+				<div class="Personal-information">
+					<div class="title font26 bg1">
+						纪律处分
+					</div>
+					<div class="input-title notic">
+						您是否因学术或非学术原因退学，被解雇，暂停或被学术机构判处缓刑？
+					</div>
+					<div class="input-warp">
+						<select name="sanction">
+							<option value="" style="color: #b6b6b6" disabled selected>请选择</option>
+							<option value="Y" th:selected="${apply.sanction == 'Y'}">是</option>
+							<option value="N" th:selected="${apply.sanction == 'N'}">否</option>
+						</select>
+					</div>
+					<div class="input-warp">
+						<div class="input-title notic">如果是，请必须在此处做出简要的说明</div>
+						<textarea name="sanctionExpain" rows="" cols="" th:text="${apply.sanctionExpain}"></textarea>
+					</div>
+					<div class="btn-warp">
+						<input type="button" value="前一项" class="prev" onclick="pageTurn(6)" />
+						<input type="button" value="下一个" class="preview" onclick="pageTurn(8)" />
+
+					</div>
+				</div>
+			</div>
+			<!--推荐人-->
+			<div class="content">
+				<div class="Personal-information">
+					<div class="title font26 bg1">
+						推荐人
+					</div>
+					<div class="notic">
+						1、目前注册的本科生应该有两封可以说明你的学术能力的教授的信，一封专门针对你的领导能力的信（这可以来自雇主，主管， 导师，教师，顾问或其他）
+						<br /> 2.研究生和青年专业人员应该有一封来自教授的信，一封专门针对您的领导能力的信，而对于最后一封信，您应该选择最能代表 您当前资料的以下选项：雇主或导师，其他学术信函，或上述选项的某种组合。
+						<br /> 3、推荐人应该了解您，并能够说出您的智力，个人特征和/或领导潜力。我们只接受在线推荐信。
+						<br /> 4、推荐人提交这些信件的截止日期为2019年5月31日24:00（北京时间）。请将信件发送至邮箱1610424323@qq.com
+						<br />
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>推荐人姓名</span>
+								<input type="text" name="refereeName" id="refereeName" th:value="${apply.refereeName}" value="" />
+							</div>
+							<div>
+							</div>
+							<div>
+							</div>
+						</div>
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>推荐人电话</span>
+								<input type="text" name="refereeTelephone" id="refereeTelephone" th:value="${apply.refereeTelephone}" value="" />
+							</div>
+							<div>
+							</div>
+							<div>
+							</div>
+						</div>
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>所在单位</span>
+								<input type="text" name="refereeCompany" id="refereeCompany" value="" th:value="${apply.refereeCompany}" />
+							</div>
+							<div>
+							</div>
+							<div>
+							</div>
+						</div>
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>邮箱</span>
+								<input type="text" name="refereeEmail" id="refereeEmail" value="" th:value="${apply.refereeEmail}" />
+							</div>
+							<div>
+							</div>
+							<div>
+							</div>
+						</div>
+					</div>
+					<div class="btn-warp">
+						<input type="button" value="前一项" class="prev" onclick="pageTurn(7)" />
+						<input type="button" value="下一个" class="preview" onclick="pageTurn(9)" />
+
+					</div>
+				</div>
+			</div>
+			<!--上传附件-->
+			<div class="content">
+				<div class="Personal-information">
+					<div class="title font26 bg1">
+						上传附件
+					</div>
+					<div class="notic">
+						请您提供相关的证明材料
+					</div>
+					<div class="input-upload">
+						<div class="upload-item">
+							<h5>简历/履历</h5>
+							<input type="file" name="resumeFileS" id="resumeFileS" value="" />
+							<span th:text="${apply.getResumeFile()}"></span>
+						</div>
+						<div class="upload-item">
+							<h5>学术论文</h5>
+							<input type="file" name="academicFileS" id="academicFileS" value="" />
+							<span th:text="${apply.getAcademicFile()}"></span>
+						</div>
+						<div class="upload-item">
+							<h5>成绩单</h5>
+							<input type="file" name="scoreFileS" id="scoreFileS" value="" />
+							<span th:text="${apply.getScoreFile()}"></span>
+						</div>
+						<div class="upload-item">
+							<h5>外语成绩单</h5>
+							<input type="file" name="languageFileS" id="languageFileS" value="" />
+							<span th:text="${apply.getLanguageFile()}"></span>
+						</div>
+						<div class="upload-item">
+							<h5>学位/文凭</h5>
+							<input type="file" name="degreeFileS" id="degreeFileS" value="" />
+							<span th:text="${apply.getDegreeFile()}"></span>
+						</div>
+					</div>
+					<div class="btn-warp">
+						<input type="button" value="前一项" class="prev" onclick="pageTurn(8)" />
+						<input type="button" value="下一个" class="preview" onclick="pageTurn(10)" />
+
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="Personal-information">
+					<div class="title font26 bg1">
+						声明
+					</div>
+					<div class="notic">
+						请仔细阅读您的申请。确保申请信息是完整和准确的。故意忽略或不准确地报告此表格中要求的信息可能构成学术不诚实行为。 提供不准确的信息可能导致拒绝任何申请或撤回录取通知书。
+					</div>
+					<div class="input-warp">
+						<div class="input-item">
+							<div>
+								<span>姓名</span>
+								<input type="text" name="announceName" th:value="${apply.announceName}" id="announceName" value="" />
+							</div>
+							<div>
+								<span>日期</span>
+								<input type="date" name="announceTime" th:value="${#dates.format(apply.announceTime,'yyyy-MM-dd')}" id="announceTime" value="" />
+							</div>
+						</div>
+						<div>
+						</div>
+					</div>
+				</div>
+				<div class="btn-warp">
+					<input type="button" value="前一项" class="prev" onclick="pageTurn(9)" />
+					<input type="button" value="保存" class="save" onclick="saveForm()" />
+					<input type="button" value="提交" onclick="registerForm()" class="btn-submit" />
+				</div>
+			</div>
+		</form>
+		<script>
+            function saveForm(){
+                $.ajax({
+                    type: "POST",
+                    url: "[[@{/rec/application/save}]]",
+                    data: new FormData($("#applyForm")[0]),
+                    processData: false,
+                    contentType: false,
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.code == 0){
+                            alert("保存成功！");
+                            location.reload();
+                        }else{
+                            alert(result.msg);
+                        }
+                    }
+                })
+            }
+            function registerForm(){
+                $.ajax({
+                    type: "POST",
+                    url: "[[@{/rec/application/submit}]]",
+                    data: new FormData($("#applyForm")[0]),
+                    processData: false,
+                    contentType: false,
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.code == 0){
+                            alert("提交成功！");
+                            location.reload();
+                        }else{
+                            alert(result.msg);
+                        }
+                    }
+                })
+            }
+		</script>
+		<!--修改密码的弹框-->
+		<div id="LoginBox">
+			<div class="row1">
+				修改密码
+				<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
+			</div>
+			<div class="row" style="margin-top: 14px;">
+				<span>原密码 ：</span>
+				<input type="password" id="oldPassword" />
+			</div>
+			<div class="row">
+				<span>新密码：</span>
+				<input type="password" id="newPassword" />
+			</div>
+			<div class="row">
+				<span>再次确认密码：</span>
+				<input type="password" id="confirmPassword" />
+			</div>
+			<div class="btn-warp" style="text-align: right;margin-right: 35px; padding: 10px 0;">
+				<input type="button" value="确认" onclick="changePwd()" class="preview" />
+				<input type="button" id="close" value="取消" class="prev" />
+			</div>
+		</div>
+	</body>
+	<script>
+        function changePwd(){
+            if($("#newPassword").val() != $("#confirmPassword").val().toString()){
+                alert("确认密码和新密码不一致");
+                return;
+            }
+            $.ajax({
+                type: "PUT",
+                url: '[[@{/rec/changePwd}]]',
+                data: {
+                    oldPassword:$("#oldPassword").val(),
+                    newPassword:$("#newPassword").val()
+                },
+                dataType: "json",
+                success: function (result) {
+                    if (result.code == 0){
+                        alert("修改成功!");
+                    }else{
+                        alert(result.msg);
+                    }
+                }
+            });
+        }
+	</script>
+
+</html>

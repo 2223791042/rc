@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{/layui/css/layui.css}" />
+	<script type="text/javascript" th:src="@{/script/jquery-3.3.1.min.js}"></script>
+	<script th:src="@{/layui/layui.js}"></script>
+	<link rel="stylesheet" th:href="@{/css/font/iconfont.css}" />
+	<link rel="stylesheet" th:href="@{/css/loginDialog.css}" />
+	<script type="text/javascript" th:src="@{/js/pageTurn.js}" ></script>
+	<title>申请详情信息</title>
+	<style>
+		textarea {
+			width: 1120px !important;
+		}
+		#content{
+			margin: 50px auto;
+			width: 1300px;
+		}
+	</style>
+</head>
+<body>
+	<div class="head">
+		<div class="leftinfor">
+			<span class="icon-yonghu"></span><span th:text="${recUser.email}"></span>
+		</div>
+		<div class="rightinfor">
+			<a href="#" id="change">修改密码</a>
+			<a th:href="@{/rec/logout}">退出</a>
+		</div>
+	</div>
+	<fieldset class="layui-elem-field layui-field-title" style="text-align: center;">
+		<legend><span th:text="${apply.name}"></span> 个人信息</legend>
+	</fieldset>
+	<form class="layui-form" action="" id="content">
+		<div class="layui-form-item">
+			<div class="layui-form-item">
+				<label class="layui-form-label">姓名</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.name}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">性别</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.sex == 'M' ? '男' : '女'}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">出生日期</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${#dates.format(apply.birthday,'yyyy-MM-dd')}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">民族</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.nation}" readonly class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">籍贯</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.nativeAdd}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">目前所在地</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.domicile}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">身份证号码</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.cardId}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">家庭住址</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.homeAdd}" readonly class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">邮箱</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.email}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">联系电话</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.telephone}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">紧急联系人</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.agentName}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">与本人关系</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.agentRelative}" readonly class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">紧急电话</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.email}" readonly class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">学术成就</label>
+				<div class="layui-input-block">
+					<textarea readonly th:text="${apply.academicAchi}" class="layui-textarea"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">在线资料</label>
+				<div class="layui-input-block">
+					<textarea readonly th:text="${apply.onlineData}" class="layui-textarea"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">自我介绍</label>
+				<div class="layui-input-block">
+					<textarea readonly th:text="${apply.introduce}" class="layui-textarea"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">学校名称</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.school}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">学历</label>
+				<div class="layui-input-inline">
+					<select>
+						<option value="0" th:selected="${apply.education == '0'}">大专</option>
+						<option value="1" th:selected="${apply.education == '1'}">本科</option>
+						<option value="2" th:selected="${apply.education == '2'}">研究生</option>
+						<option value="3" th:selected="${apply.education == '3'}">博士</option>
+					</select>
+				</div>
+				<label class="layui-form-label">研究领域</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.researchField}" readonly class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">教育时间</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${#dates.format(apply.startEduTime,'yyyy-MM-dd')}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">直到</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${#dates.format(apply.endEduTime,'yyyy-MM-dd')}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">学位状态</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.degreeStatus == 'Y' ? '已获得' : '未获得'}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">学位名称</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.degreeName}" readonly class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">课程学分</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.courceScore}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">教学语言</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.mainLanguage}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">语言名称</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.languageName}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">考试时间</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${#dates.format(apply.testTime,'yyyy-MM-dd')}" readonly class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">成绩</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.languageScore}" readonly class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">项目名称</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.projectName}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">开始时间</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${#dates.format(apply.projectStartTime,'yyyy-MM-dd')}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">结束时间</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${#dates.format(apply.projectEndTime,'yyyy-MM-dd')}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">项目地点</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.projectAdd}" readonly class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">项目说明</label>
+				<div class="layui-input-block">
+					<textarea readonly th:text="${apply.projectExplain}" class="layui-textarea"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">经历类型</label>
+				<div class="layui-input-inline">
+					<select>
+						<option value="0" th:selected="${apply.experienceType == '0'}">学术研究</option>
+						<option value="1" th:selected="${apply.experienceType == '1'}">专业经历</option>
+						<option value="2" th:selected="${apply.experienceType == '2'}">志愿活动</option>
+					</select>
+				</div>
+				<label class="layui-form-label">开始时间</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${#dates.format(apply.experStartTime,'yyyy-MM-dd')}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">结束时间</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${#dates.format(apply.experEndTime,'yyyy-MM-dd')}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">经历地点</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.experienceAdd}" readonly class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">经历说明</label>
+				<div class="layui-input-block">
+					<textarea readonly th:text="${apply.experienceExplain}" class="layui-textarea"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">荣誉奖项</label>
+				<div class="layui-input-block">
+					<textarea readonly th:text="${apply.honor}" class="layui-textarea"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">纪律处分</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.sanction == 'Y' ? '是' : '否'}" readonly class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">处分说明</label>
+				<div class="layui-input-block">
+					<textarea readonly th:text="${apply.sanctionExpain}" class="layui-textarea"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">推荐人</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.refereeName}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">电话</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.refereeTelephone}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">单位</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.refereeCompany}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">邮箱</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.refereeEmail}" readonly class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">声明姓名</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${apply.announceName}" readonly class="layui-input">
+				</div>
+				<label class="layui-form-label">声明时间</label>
+				<div class="layui-input-inline">
+					<input type="text" th:value="${#dates.format(apply.announceTime,'yyyy-MM-dd')}" readonly class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item" style="margin-left: 380px;">
+				<a th:href="${apply.resumeFile}" class="layui-btn" download=""><i class="layui-icon">&#xe601;</i>简历</a>
+				<a th:href="${apply.academicFile}" class="layui-btn" download=""><i class="layui-icon">&#xe601;</i>学术论文</a>
+				<a th:href="${apply.scoreFile}" class="layui-btn" download=""><i class="layui-icon">&#xe601;</i>成绩单</a>
+				<a th:href="${apply.languageFile}" class="layui-btn" download=""><i class="layui-icon">&#xe601;</i>外语成绩单</a>
+				<a th:href="${apply.degreeFile}" class="layui-btn" download=""><i class="layui-icon">&#xe601;</i>学位</a>
+			</div>
+		</div>
+	</form>
+	<!--修改密码的弹框-->
+	<div id="LoginBox">
+		<div class="row1">
+			修改密码
+			<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
+		</div>
+		<div class="row" style="margin-top: 14px;">
+			<span>原密码 ：</span>
+			<input type="password" id="oldPassword" />
+		</div>
+		<div class="row">
+			<span>新密码：</span>
+			<input type="password" id="newPassword" />
+		</div>
+		<div class="row">
+			<span>再次确认密码：</span>
+			<input type="password" id="confirmPassword" />
+		</div>
+		<div class="btn-warp" style="text-align: right;margin-right: 35px; padding: 10px 0;">
+			<input type="button" value="确认" onclick="changePwd()" class="preview" />
+			<input type="button" id="close" value="取消" class="prev" />
+		</div>
+	</div>
+</body>
+	<script>
+		function changePwd(){
+		    if($("#newPassword").val() != $("#confirmPassword").val().toString()){
+		        alert("确认密码和新密码不一致");
+		        return;
+			}
+            $.ajax({
+                type: "PUT",
+                url: '[[@{/rec/changePwd}]]',
+                data: {
+                    oldPassword:$("#oldPassword").val(),
+                    newPassword:$("#newPassword").val()
+                },
+                dataType: "json",
+                success: function (result) {
+					if (result.code == 0){
+					    alert("修改成功!");
+					}else{
+					    alert(result.msg);
+					}
+                }
+            });
+		}
+		layui.use('form', function () {
+			var form = layui.form;
+		});
+	</script>
+</html>

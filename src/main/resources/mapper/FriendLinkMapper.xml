@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="guet.hxm.rc.dao.FriendLinkMapper" >
+  <resultMap id="BaseResultMap" type="guet.hxm.rc.entity.FriendLink" >
+    <id column="link_id" property="linkId" jdbcType="BIGINT" />
+    <result column="link_name" property="linkName" jdbcType="VARCHAR" />
+    <result column="link_image" property="linkImage" jdbcType="VARCHAR" />
+    <result column="link_url" property="linkUrl" jdbcType="VARCHAR" />
+    <result column="is_blank" property="isBlank" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="DATE" />
+    <result column="link_order" property="linkOrder" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    link_id, link_name, link_image, link_url, is_blank, add_time, link_order
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="guet.hxm.rc.entity.FriendLinkExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from friend_link
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from friend_link
+    where link_id = #{linkId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from friend_link
+    where link_id = #{linkId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="guet.hxm.rc.entity.FriendLinkExample" >
+    delete from friend_link
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="guet.hxm.rc.entity.FriendLink" >
+    insert into friend_link (link_id, link_name, link_image, 
+      link_url, is_blank, add_time, 
+      link_order)
+    values (#{linkId,jdbcType=BIGINT}, #{linkName,jdbcType=VARCHAR}, #{linkImage,jdbcType=VARCHAR}, 
+      #{linkUrl,jdbcType=VARCHAR}, #{isBlank,jdbcType=VARCHAR}, #{addTime,jdbcType=DATE}, 
+      #{linkOrder,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="guet.hxm.rc.entity.FriendLink" >
+    insert into friend_link
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="linkId != null" >
+        link_id,
+      </if>
+      <if test="linkName != null" >
+        link_name,
+      </if>
+      <if test="linkImage != null" >
+        link_image,
+      </if>
+      <if test="linkUrl != null" >
+        link_url,
+      </if>
+      <if test="isBlank != null" >
+        is_blank,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="linkOrder != null" >
+        link_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="linkId != null" >
+        #{linkId,jdbcType=BIGINT},
+      </if>
+      <if test="linkName != null" >
+        #{linkName,jdbcType=VARCHAR},
+      </if>
+      <if test="linkImage != null" >
+        #{linkImage,jdbcType=VARCHAR},
+      </if>
+      <if test="linkUrl != null" >
+        #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isBlank != null" >
+        #{isBlank,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=DATE},
+      </if>
+      <if test="linkOrder != null" >
+        #{linkOrder,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="guet.hxm.rc.entity.FriendLinkExample" resultType="java.lang.Integer" >
+    select count(*) from friend_link
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update friend_link
+    <set >
+      <if test="record.linkId != null" >
+        link_id = #{record.linkId,jdbcType=BIGINT},
+      </if>
+      <if test="record.linkName != null" >
+        link_name = #{record.linkName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkImage != null" >
+        link_image = #{record.linkImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkUrl != null" >
+        link_url = #{record.linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isBlank != null" >
+        is_blank = #{record.isBlank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=DATE},
+      </if>
+      <if test="record.linkOrder != null" >
+        link_order = #{record.linkOrder,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update friend_link
+    set link_id = #{record.linkId,jdbcType=BIGINT},
+      link_name = #{record.linkName,jdbcType=VARCHAR},
+      link_image = #{record.linkImage,jdbcType=VARCHAR},
+      link_url = #{record.linkUrl,jdbcType=VARCHAR},
+      is_blank = #{record.isBlank,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=DATE},
+      link_order = #{record.linkOrder,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="guet.hxm.rc.entity.FriendLink" >
+    update friend_link
+    <set >
+      <if test="linkName != null" >
+        link_name = #{linkName,jdbcType=VARCHAR},
+      </if>
+      <if test="linkImage != null" >
+        link_image = #{linkImage,jdbcType=VARCHAR},
+      </if>
+      <if test="linkUrl != null" >
+        link_url = #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isBlank != null" >
+        is_blank = #{isBlank,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=DATE},
+      </if>
+      <if test="linkOrder != null" >
+        link_order = #{linkOrder,jdbcType=INTEGER},
+      </if>
+    </set>
+    where link_id = #{linkId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="guet.hxm.rc.entity.FriendLink" >
+    update friend_link
+    set link_name = #{linkName,jdbcType=VARCHAR},
+      link_image = #{linkImage,jdbcType=VARCHAR},
+      link_url = #{linkUrl,jdbcType=VARCHAR},
+      is_blank = #{isBlank,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=DATE},
+      link_order = #{linkOrder,jdbcType=INTEGER}
+    where link_id = #{linkId,jdbcType=BIGINT}
+  </update>
+</mapper>

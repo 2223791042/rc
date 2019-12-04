@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="guet.hxm.rc.dao.TeacherMapper" >
+  <resultMap id="BaseResultMap" type="guet.hxm.rc.entity.Teacher" >
+    <id column="teacher_id" property="teacherId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="college" property="college" jdbcType="VARCHAR" />
+    <result column="appellation" property="appellation" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="research_field" property="researchField" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="teacher_order" property="teacherOrder" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    teacher_id, name, college, appellation, job, email, research_field, image, teacher_order, 
+    update_time, status, introduce
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="guet.hxm.rc.entity.TeacherExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where teacher_id = #{teacherId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from teacher
+    where teacher_id = #{teacherId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="guet.hxm.rc.entity.TeacherExample" >
+    delete from teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="guet.hxm.rc.entity.Teacher" >
+    insert into teacher (teacher_id, name, college, 
+      appellation, job, email, 
+      research_field, image, teacher_order, 
+      update_time, status, introduce
+      )
+    values (#{teacherId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{college,jdbcType=VARCHAR}, 
+      #{appellation,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{researchField,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{teacherOrder,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=DATE}, #{status,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="guet.hxm.rc.entity.Teacher" >
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="teacherId != null" >
+        teacher_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="college != null" >
+        college,
+      </if>
+      <if test="appellation != null" >
+        appellation,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="researchField != null" >
+        research_field,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="teacherOrder != null" >
+        teacher_order,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="college != null" >
+        #{college,jdbcType=VARCHAR},
+      </if>
+      <if test="appellation != null" >
+        #{appellation,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="researchField != null" >
+        #{researchField,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherOrder != null" >
+        #{teacherOrder,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="guet.hxm.rc.entity.TeacherExample" resultType="java.lang.Integer" >
+    select count(*) from teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update teacher
+    <set >
+      <if test="record.teacherId != null" >
+        teacher_id = #{record.teacherId,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.college != null" >
+        college = #{record.college,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appellation != null" >
+        appellation = #{record.appellation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.job != null" >
+        job = #{record.job,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.researchField != null" >
+        research_field = #{record.researchField,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image != null" >
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacherOrder != null" >
+        teacher_order = #{record.teacherOrder,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=DATE},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introduce != null" >
+        introduce = #{record.introduce,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update teacher
+    set teacher_id = #{record.teacherId,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      college = #{record.college,jdbcType=VARCHAR},
+      appellation = #{record.appellation,jdbcType=VARCHAR},
+      job = #{record.job,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      research_field = #{record.researchField,jdbcType=VARCHAR},
+      image = #{record.image,jdbcType=VARCHAR},
+      teacher_order = #{record.teacherOrder,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=DATE},
+      status = #{record.status,jdbcType=VARCHAR},
+      introduce = #{record.introduce,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="guet.hxm.rc.entity.Teacher" >
+    update teacher
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="college != null" >
+        college = #{college,jdbcType=VARCHAR},
+      </if>
+      <if test="appellation != null" >
+        appellation = #{appellation,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="researchField != null" >
+        research_field = #{researchField,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherOrder != null" >
+        teacher_order = #{teacherOrder,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where teacher_id = #{teacherId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="guet.hxm.rc.entity.Teacher" >
+    update teacher
+    set name = #{name,jdbcType=VARCHAR},
+      college = #{college,jdbcType=VARCHAR},
+      appellation = #{appellation,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      research_field = #{researchField,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      teacher_order = #{teacherOrder,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=DATE},
+      status = #{status,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR}
+    where teacher_id = #{teacherId,jdbcType=BIGINT}
+  </update>
+</mapper>

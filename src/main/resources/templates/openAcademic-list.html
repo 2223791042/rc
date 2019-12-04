@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>开源学术列表</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" />
+    <script type="text/javascript" th:src="@{/script/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/layui/layui.js}"></script>
+</head>
+<body>
+<div class="demoTable" style="margin-top: 20px;">
+    &nbsp;
+    序号：
+    <div class="layui-inline">
+        <input class="layui-input" name="academicId" autocomplete="off" id="academicId">
+    </div>
+    &nbsp;
+    作者：
+    <div class="layui-inline">
+        <input class="layui-input" name="academicAuthor" autocomplete="off" id="academicAuthor">
+    </div>
+    &nbsp;
+    年份：
+    <div class="layui-inline">
+        <input class="layui-input" name="academicYear" autocomplete="off" id="academicYear">
+    </div>
+    &nbsp;
+    类型：
+    <div class="layui-inline layui-form">
+        <select name="academicType" id="academicType" lay-verify="required">
+            <option value=""></option>
+            <option value="0">论文</option>
+            <option value="1">期刊</option>
+            <option value="2">著作</option>
+        </select>
+    </div>
+    <button class="layui-btn" onclick="search()"><i class="layui-icon">&#xe615;</i></button>
+</div>
+<table class="layui-hide" id="test" lay-filter="test"></table>
+
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加资源</button>
+        <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delBatch">批量删除</button>
+    </div>
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon">&#xe642;</i>编辑</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
+</script>
+<script type="text/html" id="academicTypeOption">
+    {{# if(d.academicType == 0){ }}
+    论文
+    {{# } else if(d.academicType == 1){ }}
+    期刊
+    {{# } else if(d.academicType == 2){ }}
+    著作
+    {{# } }}
+</script>
+<script>
+    var tableData = null;
+    layui.use(['table','form'], function(){
+        var table = layui.table;
+        var form = layui.form;
+        form.render();
+        tableData =  table.render({
+            elem: '#test'
+            ,height: 'full-100'
+            ,url:'[[@{/admin/openAcademicList}]]'
+            ,toolbar: '#toolbarDemo'
+            ,title: '开源学术列表'
+            ,id: 'openAcademicList'
+            ,page: true
+            ,cols: [
+                [
+                    {type: 'checkbox', fixed: 'left'}
+                    ,{field:'academicId',width:80, title:'序号'}
+                    ,{field:'academicName',title:'名称'}
+                    ,{field:'academicAuthor',width:100, title:'作者'}
+                    ,{field:'academicYear',width:100, title:'年份'}
+                    ,{field:'academicType',width:100, title:'类型', templet:'#academicTypeOption'}
+                    ,{field:'academicDownloadLink', title:'资源链接', templet:'<a download="" href="{{ d.academicDownloadLink }}">{{ d.academicDownloadLink }}</a>'}
+                    ,{field:'academicDownloadQuantity',width:120, title:'下载数量'}
+                    ,{field: 'operate', width:180, title: '操作',toolbar:'#barDemo'}
+                ]
+            ]
+        });
+        //工具栏事件
+        table.on('toolbar(test)', function(obj){
+            switch(obj.event){
+                case 'add':
+                    layer.open({
+                        type: 2,
+                        title: '添加学术',
+                        skin: 'layui-layer-rim', //加上边框
+                        area: ['500px','400px'], //宽高
+                        content: '[[@{/admin/openAcademicAdd}]]',
+                        end: function () {
+                            tableData.reload({
+                                where: {
+                                    academicId: $("#academicId").val(),
+                                    academicAuthor: $("#academicAuthor").val(),
+                                    academicYear: $("#academicYear").val(),
+                                    academicType: $("#academicType").val()
+                                }
+                            });
+                        }
+                    });
+                    break;
+                case 'delBatch':
+                    var checkStatus = table.checkStatus('openAcademicList')
+                        ,data = checkStatus.data;
+                    var id_str = "";
+                    if (data.length > 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            id_str += data[i].academicId + ',';
+                        }
+                        id_str = id_str.substr(0, id_str.length - 1);
+                        var info = "确定要删除这些记录吗?ID为:" + id_str;
+                        layer.confirm(info, function () {
+                            $.ajax({
+                                async: false,
+                                type: "DELETE",
+                                url: "[[@{/admin/openAcademicDelBatch/}]]" + id_str,
+                                dataType: "json",
+                                success: function (result) {
+                                    if (result.code == 0) {
+                                        var id = layer.msg('删除成功', {
+                                            time: false,
+                                            btn: ['知道了'],
+                                            yes: function () {
+                                                layer.close(id);
+                                                tableData.reload({
+                                                    where: {
+                                                        academicId: $("#academicId").val(),
+                                                        academicAuthor: $("#academicAuthor").val(),
+                                                        academicYear: $("#academicYear").val(),
+                                                        academicType: $("#academicType").val()
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    } else {
+                                        layer.msg('删除失败', {
+                                            btn: ['知道了']
+                                        });
+                                    }
+                                }
+                            });
+                        })
+                    }
+                    break;
+            }
+        });
+        //监听行工具事件
+        table.on('tool(test)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'edit'){
+                layer.open({
+                    type: 2,
+                    title: '修改学术',
+                    skin: 'layui-layer-rim', //加上边框
+                    area: ['500px','460px'], //宽高
+                    content: '[[@{/admin/openAcademic/}]]'+data["academicId"],
+                    end: function () {
+                        tableData.reload({
+                            where: {
+                                academicId: $("#academicId").val(),
+                                academicAuthor: $("#academicAuthor").val(),
+                                academicYear: $("#academicYear").val(),
+                                academicType: $("#academicType").val()
+                            }
+                        });
+                    }
+                });
+            }
+            if(obj.event === 'del'){
+                var info = "确定要删除此记录吗?ID为:"+data["academicId"];
+                layer.confirm(info, function(){
+                        $.ajax({
+                            async: true,
+                            type: "DELETE",
+                            url: "[[@{/admin/openAcademic/}]]"+data["academicId"],
+                            dataType: "json",
+                            success: function (result) {
+                                if (result.code == 0) {
+                                    var id = layer.msg('删除成功',{
+                                        time:false,
+                                        btn:['知道了'],
+                                        yes:function () {
+                                            layer.close(id);
+                                            tableData.reload({
+                                                where: {
+                                                    academicId: $("#academicId").val(),
+                                                    academicAuthor: $("#academicAuthor").val(),
+                                                    academicYear: $("#academicYear").val(),
+                                                    academicType: $("#academicType").val()
+                                                }
+                                            });
+                                        }
+                                    });
+                                } else {
+                                    layer.msg(result.msg,{
+                                        btn:['知道了']
+                                    });
+                                }
+                            }
+                        });
+                    }
+                )}
+        });
+    });
+    function search(){
+        tableData.reload({
+            where: {
+                academicId: $("#academicId").val(),
+                academicAuthor: $("#academicAuthor").val(),
+                academicYear: $("#academicYear").val(),
+                academicType: $("#academicType").val()
+            }
+        });
+    }
+</script>
+</body>
+</html>

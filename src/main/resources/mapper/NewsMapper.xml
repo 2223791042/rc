@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="guet.hxm.rc.dao.NewsMapper" >
+  <resultMap id="BaseResultMap" type="guet.hxm.rc.entity.News" >
+    <id column="news_id" property="newsId" jdbcType="BIGINT" />
+    <result column="news_image" property="newsImage" jdbcType="VARCHAR" />
+    <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
+    <result column="news_type_id" property="newsTypeId" jdbcType="INTEGER" />
+    <result column="news_content" property="newsContent" jdbcType="VARCHAR" />
+    <result column="news_author" property="newsAuthor" jdbcType="VARCHAR" />
+    <result column="news_time" property="newsTime" jdbcType="DATE" />
+    <result column="news_status" property="newsStatus" jdbcType="VARCHAR" />
+    <result column="news_visit" property="newsVisit" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    news_id, news_image, news_title, news_type_id, news_content, news_author, news_time, 
+    news_status, news_visit
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="guet.hxm.rc.entity.NewsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from news
+    where news_id = #{newsId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from news
+    where news_id = #{newsId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="guet.hxm.rc.entity.NewsExample" >
+    delete from news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="guet.hxm.rc.entity.News" >
+    insert into news (news_id, news_image, news_title, 
+      news_type_id, news_content, news_author, 
+      news_time, news_status, news_visit
+      )
+    values (#{newsId,jdbcType=BIGINT}, #{newsImage,jdbcType=VARCHAR}, #{newsTitle,jdbcType=VARCHAR}, 
+      #{newsTypeId,jdbcType=INTEGER}, #{newsContent,jdbcType=VARCHAR}, #{newsAuthor,jdbcType=VARCHAR}, 
+      #{newsTime,jdbcType=DATE}, #{newsStatus,jdbcType=VARCHAR}, #{newsVisit,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="guet.hxm.rc.entity.News" >
+    insert into news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="newsId != null" >
+        news_id,
+      </if>
+      <if test="newsImage != null" >
+        news_image,
+      </if>
+      <if test="newsTitle != null" >
+        news_title,
+      </if>
+      <if test="newsTypeId != null" >
+        news_type_id,
+      </if>
+      <if test="newsContent != null" >
+        news_content,
+      </if>
+      <if test="newsAuthor != null" >
+        news_author,
+      </if>
+      <if test="newsTime != null" >
+        news_time,
+      </if>
+      <if test="newsStatus != null" >
+        news_status,
+      </if>
+      <if test="newsVisit != null" >
+        news_visit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="newsId != null" >
+        #{newsId,jdbcType=BIGINT},
+      </if>
+      <if test="newsImage != null" >
+        #{newsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="newsTitle != null" >
+        #{newsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newsTypeId != null" >
+        #{newsTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="newsContent != null" >
+        #{newsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="newsAuthor != null" >
+        #{newsAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="newsTime != null" >
+        #{newsTime,jdbcType=DATE},
+      </if>
+      <if test="newsStatus != null" >
+        #{newsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="newsVisit != null" >
+        #{newsVisit,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="guet.hxm.rc.entity.NewsExample" resultType="java.lang.Integer" >
+    select count(*) from news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update news
+    <set >
+      <if test="record.newsId != null" >
+        news_id = #{record.newsId,jdbcType=BIGINT},
+      </if>
+      <if test="record.newsImage != null" >
+        news_image = #{record.newsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newsTitle != null" >
+        news_title = #{record.newsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newsTypeId != null" >
+        news_type_id = #{record.newsTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.newsContent != null" >
+        news_content = #{record.newsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newsAuthor != null" >
+        news_author = #{record.newsAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newsTime != null" >
+        news_time = #{record.newsTime,jdbcType=DATE},
+      </if>
+      <if test="record.newsStatus != null" >
+        news_status = #{record.newsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newsVisit != null" >
+        news_visit = #{record.newsVisit,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update news
+    set news_id = #{record.newsId,jdbcType=BIGINT},
+      news_image = #{record.newsImage,jdbcType=VARCHAR},
+      news_title = #{record.newsTitle,jdbcType=VARCHAR},
+      news_type_id = #{record.newsTypeId,jdbcType=INTEGER},
+      news_content = #{record.newsContent,jdbcType=VARCHAR},
+      news_author = #{record.newsAuthor,jdbcType=VARCHAR},
+      news_time = #{record.newsTime,jdbcType=DATE},
+      news_status = #{record.newsStatus,jdbcType=VARCHAR},
+      news_visit = #{record.newsVisit,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="guet.hxm.rc.entity.News" >
+    update news
+    <set >
+      <if test="newsImage != null" >
+        news_image = #{newsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="newsTitle != null" >
+        news_title = #{newsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newsTypeId != null" >
+        news_type_id = #{newsTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="newsContent != null" >
+        news_content = #{newsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="newsAuthor != null" >
+        news_author = #{newsAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="newsTime != null" >
+        news_time = #{newsTime,jdbcType=DATE},
+      </if>
+      <if test="newsStatus != null" >
+        news_status = #{newsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="newsVisit != null" >
+        news_visit = #{newsVisit,jdbcType=BIGINT},
+      </if>
+    </set>
+    where news_id = #{newsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="guet.hxm.rc.entity.News" >
+    update news
+    set news_image = #{newsImage,jdbcType=VARCHAR},
+      news_title = #{newsTitle,jdbcType=VARCHAR},
+      news_type_id = #{newsTypeId,jdbcType=INTEGER},
+      news_content = #{newsContent,jdbcType=VARCHAR},
+      news_author = #{newsAuthor,jdbcType=VARCHAR},
+      news_time = #{newsTime,jdbcType=DATE},
+      news_status = #{newsStatus,jdbcType=VARCHAR},
+      news_visit = #{newsVisit,jdbcType=BIGINT}
+    where news_id = #{newsId,jdbcType=BIGINT}
+  </update>
+</mapper>

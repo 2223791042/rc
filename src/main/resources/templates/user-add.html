@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" />
+    <script type="text/javascript" th:src="@{/script/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/layui/layui.js}"></script>
+    <title>用户添加</title>
+    <style>
+        #userForm {
+            margin-left: 90px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form" id="userForm">
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="username" lay-verify="required|checkUsername" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" for="password">密码</label>
+        <div class="layui-input-inline">
+            <input type="password" name="password" id="password" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" for="repassword">确认密码</label>
+        <div class="layui-input-inline">
+            <input type="password" name="repassword" id="repassword" lay-verify="required|repassword" placeholder="请确认密码" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" for="addTime">加入时间</label>
+        <div class="layui-input-inline">
+            <input type="text" name="addTime" id="addTime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">角色</label>
+        <div class="layui-input-inline">
+            <select name="userType" lay-verify="required">
+                <option value="">请选择角色</option>
+                <option value="super">超级管理员</option>
+                <option value="normal">管理员</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block" style="margin-left: 36%;">
+            <button class="layui-btn" lay-submit="" lay-filter="sub">确定</button>
+        </div>
+    </div>
+</form>
+<script>
+    layui.use(['form', 'laydate'], function () {
+        var form = layui.form;
+        var layer = layui.layer;
+        var laydate = layui.laydate;
+        //日期
+        laydate.render({
+            elem: '#addTime'
+        });
+        //提交表单
+        form.on('submit(sub)', function (data) {
+            $.ajax({
+                type: "POST",
+                url: '[[@{/admin/user}]]',
+                data: $("#userForm").serialize(),
+                dataType: "json",
+                success: function (result) {
+                    if (result.code == 0) {
+                        var id = layer.msg('添加成功',{
+                            time:false,
+                            btn:['知道了'],
+                            yes:function () {
+                                layer.close(id);
+                            }
+                        });
+                    } else {
+                        var id = layer.msg(result.msg,{
+                            time:false,
+                            btn:['知道了'],
+                            yes:function () {
+                                layer.close(id);
+                            }
+                        });
+                    }
+                }
+            });
+            return false;
+        });
+        //自定义验证规则
+        form.verify({
+            repassword: function (value) {
+                var password = document.getElementById("password").value;
+                if (password != value) {
+                    return '两次密码不一致';
+                }
+            },
+            checkUsername:function (value) {
+                var exist = false;
+                $.ajax({
+                    async: false,
+                    type: "GET",
+                    url: '[[@{/admin/user/checkUsername/}]]' + value,
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.code == 0) {
+                            exist = true;
+                        }
+                    }
+                });
+                if(exist)
+                    return "该用户名已被注册";
+            }
+        });
+    });
+</script>
+</body>
+</html>

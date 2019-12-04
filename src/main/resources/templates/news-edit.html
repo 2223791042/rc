@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" />
+    <script type="text/javascript" th:src="@{/script/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/layui/layui.js}"></script>
+    <link th:href="@{/kindeditor/themes/default/default.css}" type="text/css" rel="stylesheet">
+    <script th:src="@{/kindeditor/kindeditor-all-min.js}"></script>
+    <script th:src="@{/kindeditor/lang/zh-CN.js}"></script>
+    <title>图片修改</title>
+    <style>
+        .ke-container.ke-container-default{
+            width: 98%!important;
+            margin-left: 0.8%!important;
+        }
+    </style>
+</head>
+<body>
+<form id="imgForm">
+<div>
+    <div style="float: left;height: 200px;width: 200px;margin-top: 10px;margin-left: 25%;">
+        <img th:src="${news.newsImage}" width="100%" height="100%"></div>
+    <div style="float:left;margin-top: 100px;margin-left: 5%;">
+        <span class="layui-btn layui-btn-radius" onclick="imgSubmit()"><i class="layui-icon">&#xe603;</i>替换图片<i class="layui-icon">&#xe602;</i></span>
+    </div>
+    <div id="imgDIV" style="float:left;border:1px solid #000000;height: 200px;width: 200px;margin-top: 10px;margin-left: 5%;">
+    </div>
+</div>
+<div style="clear: left;margin-left: 61%;">
+    <input type="file" id="newsImage" name="newsImage" onchange="preview(this)"/>
+</div>
+</form>
+<form class="layui-form" id="newsForm" style="margin-top: 60px;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">新闻标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="newsTitle" th:value="${news.newsTitle}" required  lay-verify="required" placeholder="请输入新闻标题" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">新闻类型</label>
+        <div class="layui-input-inline">
+            <select  name="newsTypeId" lay-verify="required">
+                <option value="">请选择新闻类型</option>
+                <option th:each="newsType : ${newsTypeList}" th:selected="${news.newsTypeId eq newsType.typeId}" th:value="${newsType.typeId}" th:text="${newsType.typeName}"></option>
+            </select>
+        </div>
+        <label class="layui-form-label">新闻时间</label>
+        <div class="layui-input-inline">
+            <input type="text" name="newsTime" id="newsTime" th:value="${#dates.format(news.newsTime,'yyyy-MM-dd')}" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <textarea name="newsContent" id="newsContent" lay-verify="newsContent" style="height: 400px" th:text="${news.newsContent}"></textarea>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block" style="margin-left: 41.5%;">
+            <a class="layui-btn layui-btn-radius layui-btn-warm" onclick="save()">保存</a>
+            <button class="layui-btn layui-btn-radius" lay-submit="" lay-filter="sub">修改</button>
+            <a class="layui-btn layui-btn-radius layui-btn-danger" onclick="release()" >发布</a>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    //选择图片，马上预览
+    function preview(obj) {
+        $("#imgDIV").empty();
+        var file = obj.files[0];
+        if(typeof(file) != "undefined"){
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var img = "<img"+" src='"+e.target.result+"' width='100%' height='100%'>";
+                $("#imgDIV").append(img);
+            };
+            reader.readAsDataURL(file)
+        }
+    }
+</script>
+<script>
+    var editor;
+    KindEditor.ready(function(K) {
+        editor = K.create('#newsContent',{
+            //配置kindeditor编辑器的工具栏菜单项
+            items: ["undo", "redo", "|", "preview", "print", "cut", "copy", "paste", "plainpaste",
+                "|", "justifyleft", "justifycenter", "justifyright", "justifyfull", "insertorderedlist",
+                "insertunorderedlist", "indent", "outdent", "subscript", "superscript", "|", "fullscreen",
+                "/", "formatblock", "fontname", "fontsize", "|", "forecolor", "hilitecolor", "bold", "italic",
+                "underline", "strikethrough", "lineheight","removeformat", "|", "table", "hr", "link", "unlink"],
+        });
+    });
+    var layer;
+    layui.use(['form', 'laydate'], function () {
+        var form = layui.form;
+           layer = layui.layer;
+        var laydate = layui.laydate;
+        //日期
+        laydate.render({
+            elem: '#newsTime'
+        });
+        //提交表单
+        form.on('submit(sub)', function (data) {
+            $.ajax({
+                type: "PUT",
+                url: '[[@{/admin/news/}]]'+"[[${news.newsId}]]",
+                data: $("#newsForm").serialize(),
+                dataType: "json",
+                success: function (result) {
+                    if (result.code == 0) {
+                        var id = layer.msg('修改成功',{
+                            time:false,
+                            btn:['知道了'],
+                            yes:function () {
+                                layer.close(id);
+                            }
+                        });
+                    } else {
+                        var id = layer.msg('修改失败',{
+                            time:false,
+                            btn:['知道了'],
+                            yes:function () {
+                                layer.close(id);
+                            }
+                        });
+                    }
+                }
+            });
+            return false;
+        });
+        //自定义验证规则
+        form.verify({
+            newsContent: function (value) {
+                editor.sync();
+            }
+        });
+    });
+    function imgSubmit() {
+        if($("#newsImage").val()==""){
+            var id = layer.msg('请选择文件',{
+                time:false,
+                btn:['知道了'],
+                yes:function () {
+                    layer.close(id);
+                }
+            });
+            return;
+        }
+        $.ajax({
+            type: "PUT",
+            url: '[[@{/admin/news/image/}]]'+'[[${news.newsId}]]',
+            data: new FormData($("#imgForm")[0]),
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            success: function (result) {
+                if (result.code == 0) {
+                    var id = layer.msg('图片替换成功',{
+                        time:false,
+                        btn:['知道了'],
+                        yes:function () {
+                            layer.close(id);
+                            location.reload();
+                        }
+                    });
+                }
+            }
+        });
+    }
+    function save() {
+        editor.sync();
+        $.ajax({
+            type: "PUT",
+            url: '[[@{/admin/news/}]]' + "[[${news.newsId}]]?type=save",
+            data: $("#newsForm").serialize(),
+            dataType: "json",
+            success: function (result) {
+                if (result.code == 0) {
+                    var id = layer.msg('保存成功', {
+                        time: false,
+                        btn: ['知道了'],
+                        yes: function () {
+                            layer.close(id);
+                        }
+                    });
+                } else {
+                    var id = layer.msg('保存失败', {
+                        time: false,
+                        btn: ['知道了'],
+                        yes: function () {
+                            layer.close(id);
+                        }
+                    });
+                }
+            }
+        });
+    }
+    function release() {
+        editor.sync();
+        $.ajax({
+            type: "PUT",  //通过put请求方式，更新url上的一个资源
+            url: '[[@{/admin/news/}]]' + "[[${news.newsId}]]?type=release",
+            data: $("#newsForm").serialize(),
+            dataType: "json",
+            success: function (result) {
+                if (result.code == 0) {
+                    var id = layer.msg('发布成功', {
+                        time: false,
+                        btn: ['知道了'],
+                        yes: function () {
+                            layer.close(id);
+                        }
+                    });
+                } else {
+                    var id = layer.msg('发布失败', {
+                        time: false,
+                        btn: ['知道了'],
+                        yes: function () {
+                            layer.close(id);
+                        }
+                    });
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="guet.hxm.rc.dao.OpenAcademicMapper" >
+  <resultMap id="BaseResultMap" type="guet.hxm.rc.entity.OpenAcademic" >
+    <id column="academic_id" property="academicId" jdbcType="BIGINT" />
+    <result column="academic_name" property="academicName" jdbcType="VARCHAR" />
+    <result column="academic_author" property="academicAuthor" jdbcType="VARCHAR" />
+    <result column="academic_year" property="academicYear" jdbcType="VARCHAR" />
+    <result column="academic_type" property="academicType" jdbcType="INTEGER" />
+    <result column="academic_download_link" property="academicDownloadLink" jdbcType="VARCHAR" />
+    <result column="academic_download_quantity" property="academicDownloadQuantity" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    academic_id, academic_name, academic_author, academic_year, academic_type, academic_download_link, 
+    academic_download_quantity
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="guet.hxm.rc.entity.OpenAcademicExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from open_academic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from open_academic
+    where academic_id = #{academicId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from open_academic
+    where academic_id = #{academicId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="guet.hxm.rc.entity.OpenAcademicExample" >
+    delete from open_academic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="guet.hxm.rc.entity.OpenAcademic" >
+    insert into open_academic (academic_id, academic_name, academic_author, 
+      academic_year, academic_type, academic_download_link, 
+      academic_download_quantity)
+    values (#{academicId,jdbcType=BIGINT}, #{academicName,jdbcType=VARCHAR}, #{academicAuthor,jdbcType=VARCHAR}, 
+      #{academicYear,jdbcType=VARCHAR}, #{academicType,jdbcType=INTEGER}, #{academicDownloadLink,jdbcType=VARCHAR}, 
+      #{academicDownloadQuantity,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="guet.hxm.rc.entity.OpenAcademic" >
+    insert into open_academic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="academicId != null" >
+        academic_id,
+      </if>
+      <if test="academicName != null" >
+        academic_name,
+      </if>
+      <if test="academicAuthor != null" >
+        academic_author,
+      </if>
+      <if test="academicYear != null" >
+        academic_year,
+      </if>
+      <if test="academicType != null" >
+        academic_type,
+      </if>
+      <if test="academicDownloadLink != null" >
+        academic_download_link,
+      </if>
+      <if test="academicDownloadQuantity != null" >
+        academic_download_quantity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="academicId != null" >
+        #{academicId,jdbcType=BIGINT},
+      </if>
+      <if test="academicName != null" >
+        #{academicName,jdbcType=VARCHAR},
+      </if>
+      <if test="academicAuthor != null" >
+        #{academicAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="academicYear != null" >
+        #{academicYear,jdbcType=VARCHAR},
+      </if>
+      <if test="academicType != null" >
+        #{academicType,jdbcType=INTEGER},
+      </if>
+      <if test="academicDownloadLink != null" >
+        #{academicDownloadLink,jdbcType=VARCHAR},
+      </if>
+      <if test="academicDownloadQuantity != null" >
+        #{academicDownloadQuantity,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="guet.hxm.rc.entity.OpenAcademicExample" resultType="java.lang.Integer" >
+    select count(*) from open_academic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update open_academic
+    <set >
+      <if test="record.academicId != null" >
+        academic_id = #{record.academicId,jdbcType=BIGINT},
+      </if>
+      <if test="record.academicName != null" >
+        academic_name = #{record.academicName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.academicAuthor != null" >
+        academic_author = #{record.academicAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.academicYear != null" >
+        academic_year = #{record.academicYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.academicType != null" >
+        academic_type = #{record.academicType,jdbcType=INTEGER},
+      </if>
+      <if test="record.academicDownloadLink != null" >
+        academic_download_link = #{record.academicDownloadLink,jdbcType=VARCHAR},
+      </if>
+      <if test="record.academicDownloadQuantity != null" >
+        academic_download_quantity = #{record.academicDownloadQuantity,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update open_academic
+    set academic_id = #{record.academicId,jdbcType=BIGINT},
+      academic_name = #{record.academicName,jdbcType=VARCHAR},
+      academic_author = #{record.academicAuthor,jdbcType=VARCHAR},
+      academic_year = #{record.academicYear,jdbcType=VARCHAR},
+      academic_type = #{record.academicType,jdbcType=INTEGER},
+      academic_download_link = #{record.academicDownloadLink,jdbcType=VARCHAR},
+      academic_download_quantity = #{record.academicDownloadQuantity,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="guet.hxm.rc.entity.OpenAcademic" >
+    update open_academic
+    <set >
+      <if test="academicName != null" >
+        academic_name = #{academicName,jdbcType=VARCHAR},
+      </if>
+      <if test="academicAuthor != null" >
+        academic_author = #{academicAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="academicYear != null" >
+        academic_year = #{academicYear,jdbcType=VARCHAR},
+      </if>
+      <if test="academicType != null" >
+        academic_type = #{academicType,jdbcType=INTEGER},
+      </if>
+      <if test="academicDownloadLink != null" >
+        academic_download_link = #{academicDownloadLink,jdbcType=VARCHAR},
+      </if>
+      <if test="academicDownloadQuantity != null" >
+        academic_download_quantity = #{academicDownloadQuantity,jdbcType=INTEGER},
+      </if>
+    </set>
+    where academic_id = #{academicId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="guet.hxm.rc.entity.OpenAcademic" >
+    update open_academic
+    set academic_name = #{academicName,jdbcType=VARCHAR},
+      academic_author = #{academicAuthor,jdbcType=VARCHAR},
+      academic_year = #{academicYear,jdbcType=VARCHAR},
+      academic_type = #{academicType,jdbcType=INTEGER},
+      academic_download_link = #{academicDownloadLink,jdbcType=VARCHAR},
+      academic_download_quantity = #{academicDownloadQuantity,jdbcType=INTEGER}
+    where academic_id = #{academicId,jdbcType=BIGINT}
+  </update>
+</mapper>

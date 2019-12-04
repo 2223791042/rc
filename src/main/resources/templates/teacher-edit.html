@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" />
+    <script type="text/javascript" th:src="@{/script/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/layui/layui.js}"></script>
+    <link th:href="@{/kindeditor/themes/default/default.css}" type="text/css" rel="stylesheet">
+    <script th:src="@{/kindeditor/kindeditor-all-min.js}"></script>
+    <script th:src="@{/kindeditor/lang/zh-CN.js}"></script>
+    <title>教师添加</title>
+    <style>
+        #teacherForm {
+            margin-left: 15%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form" id="teacherForm">
+    <div class="layui-form-item" style="margin-left: 110px;">
+        <div style="width: 150px;height: 150px;">
+            <img th:src="${teacher.image}" style="height: 100%;width: 100%;">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-inline">
+            <input type="text" th:value="${teacher.name}" readonly autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" for="college">所在学院</label>
+        <div class="layui-input-inline">
+            <input type="text" name="college" th:value="${teacher.college}" id="college" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" for="appellation">职称</label>
+        <div class="layui-input-inline">
+            <input type="text" name="appellation" th:value="${teacher.appellation}" id="appellation" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" for="job">职务</label>
+        <div class="layui-input-inline">
+            <input type="text" name="job" id="job" th:value="${teacher.job}" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" for="email">邮箱</label>
+        <div class="layui-input-inline">
+            <input type="text" name="email" th:value="${teacher.email}" id="email" lay-verify="email" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" for="researchField">研究领域</label>
+        <div class="layui-input-inline">
+            <input type="text" name="researchField" th:value="${teacher.researchField}" id="researchField" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" for="img">封面头像</label>
+        <div class="layui-input-inline">
+            <input type="file" name="img" id="img">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" for="teacherOrder">排序</label>
+        <div class="layui-input-inline">
+            <input type="text" name="teacherOrder" th:value="${teacher.teacherOrder}" id="teacherOrder" lay-verify="required|number" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">教师介绍</label>
+        <textarea name="introduce" id="introduce" th:text="${teacher.introduce}" lay-verify="introduce" style="height: 400px" ></textarea>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block" style="margin-left: 32.5%;">
+            <span class="layui-btn layui-btn-radius layui-btn-warm" onclick="save()">保存</span>
+            <button class="layui-btn layui-btn-radius" lay-submit="" lay-filter="sub">发布</button>
+        </div>
+    </div>
+</form>
+<script>
+    var editor;
+    KindEditor.ready(function(K) {
+        editor = K.create('#introduce',{
+            //配置kindeditor编辑器的工具栏菜单项
+            items: ["undo", "redo", "|", "preview", "print", "cut", "copy", "paste", "plainpaste",
+                "|", "justifyleft", "justifycenter", "justifyright", "justifyfull", "insertorderedlist",
+                "insertunorderedlist", "indent", "outdent", "subscript", "superscript", "|", "fullscreen",
+                "/", "formatblock", "fontname", "fontsize", "|", "forecolor", "hilitecolor", "bold", "italic",
+                "underline", "strikethrough", "lineheight","removeformat", "|", "table", "hr", "link", "unlink"],
+        });
+    });
+    layui.use(['form', 'laydate'], function () {
+        var form = layui.form;
+        var layer = layui.layer;
+        //提交表单
+        form.on('submit(sub)', function (data) {
+            $.ajax({
+                type: "PUT",
+                url: '[[@{/admin/teacher/}]]' + '[[${teacher.teacherId}]]?type=release',
+                data: new FormData($("#teacherForm")[0]),
+                processData: false,
+                contentType: false,
+                dataType: "json",
+                success: function (result) {
+                    if (result.code == 0) {
+                        var id = layer.msg('发布成功',{
+                            time:false,
+                            btn:['知道了'],
+                            yes:function () {
+                                layer.close(id);
+                            }
+                        });
+                    } else {
+                        var id = layer.msg(result.msg,{
+                            time:false,
+                            btn:['知道了'],
+                            yes:function () {
+                                layer.close(id);
+                            }
+                        });
+                    }
+                }
+            });
+            return false;
+        });
+        //自定义验证规则
+        form.verify({
+            //自定义验证规则
+            introduce: function (value) {
+                editor.sync();
+            }
+        });
+    });
+    function save() {
+            editor.sync();
+            $.ajax({
+                type: "PUT",
+                url: '[[@{/admin/teacher/}]]' + '[[${teacher.teacherId}]]?type=save',
+                data: new FormData($("#teacherForm")[0]),
+                processData: false,
+                contentType: false,
+                dataType: "json",
+                success: function (result) {
+                    if (result.code == 0) {
+                        var id = layer.msg('保存成功',{
+                            time:false,
+                            btn:['知道了'],
+                            yes:function () {
+                                layer.close(id);
+                            }
+                        });
+                    } else {
+                        var id = layer.msg('保存失败',{
+                            time:false,
+                            btn:['知道了'],
+                            yes:function () {
+                                layer.close(id);
+                            }
+                        });
+                    }
+                }
+            });
+    }
+</script>
+</body>
+</html>

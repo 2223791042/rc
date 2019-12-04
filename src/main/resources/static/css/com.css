@@ -1,0 +1,265 @@
+/*	清除banner浮动*/
+.navs::after {
+	content: ".";
+	clear: both;
+	display: block;
+	overflow: hidden;
+	font-size: 0;
+	height: 0;
+}
+/*清除浮动*/
+	.clear::after {
+		content: ".";
+		clear: both;
+		display: block;
+		overflow: hidden;
+		font-size: 0;
+		height: 0;
+	}
+/*头部导航*/
+
+.index-top {
+	width: 100%;
+	float: left;
+	min-width: 1200px;
+}
+
+.index-one {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.index-one {
+	width: 1200px;
+	/* margin: 0 auto; */
+	margin-left: 159.6px;
+}
+
+.one-ul {
+	width: 100%;
+}
+
+.one-ul li {
+	margin-right: 10px;
+	float: left;
+}
+
+.gd-one-a {
+	float: right;
+}
+
+.gd-img2 {
+	width: 15px;
+	height: 14px;
+	float: left;
+	margin-top: 22px;
+}
+
+img {
+	border: none;
+}
+
+.gd-one {
+	height: 61px;
+	background: #efefef;
+}
+
+.gd-pp2 {
+	font-size: 12px;
+	color: #515151;
+	float: left;
+	line-height: 61px;
+	margin-left: 5px;
+}
+
+.gd-pp1 {
+	float: left;
+	height: 33px;
+	padding: 0 22px;
+	margin-top: 15px;
+	text-align: center;
+	line-height: 33px;
+	color: #2b2b2b;
+	font-size: 15px;
+}
+
+.one-ul li a:hover {
+	background: #008c3e;
+	color: #fff;
+	border-radius: 2px;
+	-o-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+
+.g-hover {
+	background: #008c3e;
+	color: #fff;
+	border-radius: 2px;
+	-o-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+
+
+/*主要的内容部分*/
+
+.lab-b {
+	padding: 20px 0;
+	margin: 0 auto;
+}
+
+.wrap {
+	width: 1200px;
+}
+.au-title {
+			margin-bottom: 30px;
+		}
+		
+		.au-title em {
+			display: block;
+			width: 70px;
+			height: 3px;
+			background: #08BBCA;
+			margin-left: 565px;
+		}
+		
+		.au-title h2 {
+			text-align: center;
+			font-size: 24px;
+			letter-spacing: 2px;
+			margin-bottom: 30px;
+		}
+		
+		.textbox {
+			width: 90%;
+			line-height: 30px;
+			font-size: 15px;
+			margin: 0 auto;
+		}
+		
+		.lab-b2 {
+			text-align: left;
+		}
+		
+		.lab-b2 a {
+			position: relative;
+			display: inline-block;
+			margin: 50px 8px;
+			width: 220px;
+		}
+		
+		.lab-b2 a img {
+			margin: 0 auto;
+			width: 115px;
+			height: 132px;
+			display: block;
+			border: 0;
+			padding: 0;
+		}
+		
+		.au-c2 {
+			margin-top: 30px;
+		}
+		
+		.au-c2 ul {
+			overflow: hidden;
+			text-align: center;
+		}
+		
+		.au-c2 li {
+			float: left;
+			width: 19%;
+			margin: 0 3%;
+		}
+		
+		.au-c2 li img {
+			width: 100px;
+			height: 100px;
+			margin: 0 auto;
+		}
+		
+		.au-c2 li h6 {
+			width: 100%;
+			text-align: center;
+			/*	margin-top: 25px;*/
+			font-size: 16px;
+			line-height: 60px;
+		}
+		
+/*分页*/
+		
+		.p_page {
+			float: left;
+			margin-left: 300px;
+		}
+		
+		.p_page span {
+			float: left;
+			margin-left: 10px;
+		}
+		
+		.p_page ul {
+			float: left;
+		}
+		
+		.p_page li.current {
+			float: left;
+			margin-left: 10px;
+		}
+		
+		.p_page li {
+			float: left;
+			margin-left: 10px;
+			display: inline;
+		}
+		
+		.p_page li a {
+			float: left;
+			width: 36px;
+			height: 36px;
+			line-height: 36px;
+			text-align: center;
+			font-size: 12px;
+			color: #999999;
+			border: 1px #cccccc solid;
+			background: #f0f0f0;
+			border-radius: 5px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+		}
+		
+		.p_page span a {
+			float: left;
+			width: 62px;
+			height: 36px;
+			line-height: 36px;
+			text-align: center;
+			font-size: 12px;
+			color: #999999;
+			border: 1px #cccccc solid;
+			background: #f6f6f6;
+			border-radius: 5px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+		}
+		
+		.p_page li a:hover {
+			float: left;
+			width: 36px;
+			height: 36px;
+			line-height: 36px;
+			text-align: center;
+			font-size: 12px;
+			color: #fff;
+			background: #47a973;
+			border-radius: 5px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+		}
+		
+		.p_page .hover {
+			background: #47a973;
+			color: #fff;
+		}
+		

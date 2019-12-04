@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="guet.hxm.rc.dao.InformMapper" >
+  <resultMap id="BaseResultMap" type="guet.hxm.rc.entity.Inform" >
+    <id column="inform_id" property="informId" jdbcType="BIGINT" />
+    <result column="inform_image" property="informImage" jdbcType="VARCHAR" />
+    <result column="inform_title" property="informTitle" jdbcType="VARCHAR" />
+    <result column="inform_type_id" property="informTypeId" jdbcType="INTEGER" />
+    <result column="inform_content" property="informContent" jdbcType="VARCHAR" />
+    <result column="inform_author" property="informAuthor" jdbcType="VARCHAR" />
+    <result column="inform_time" property="informTime" jdbcType="DATE" />
+    <result column="inform_status" property="informStatus" jdbcType="VARCHAR" />
+    <result column="inform_visit" property="informVisit" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    inform_id, inform_image, inform_title, inform_type_id, inform_content, inform_author, 
+    inform_time, inform_status, inform_visit
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="guet.hxm.rc.entity.InformExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from inform
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from inform
+    where inform_id = #{informId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from inform
+    where inform_id = #{informId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="guet.hxm.rc.entity.InformExample" >
+    delete from inform
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="guet.hxm.rc.entity.Inform" >
+    insert into inform (inform_id, inform_image, inform_title, 
+      inform_type_id, inform_content, inform_author, 
+      inform_time, inform_status, inform_visit
+      )
+    values (#{informId,jdbcType=BIGINT}, #{informImage,jdbcType=VARCHAR}, #{informTitle,jdbcType=VARCHAR}, 
+      #{informTypeId,jdbcType=INTEGER}, #{informContent,jdbcType=VARCHAR}, #{informAuthor,jdbcType=VARCHAR}, 
+      #{informTime,jdbcType=DATE}, #{informStatus,jdbcType=VARCHAR}, #{informVisit,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="guet.hxm.rc.entity.Inform" >
+    insert into inform
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="informId != null" >
+        inform_id,
+      </if>
+      <if test="informImage != null" >
+        inform_image,
+      </if>
+      <if test="informTitle != null" >
+        inform_title,
+      </if>
+      <if test="informTypeId != null" >
+        inform_type_id,
+      </if>
+      <if test="informContent != null" >
+        inform_content,
+      </if>
+      <if test="informAuthor != null" >
+        inform_author,
+      </if>
+      <if test="informTime != null" >
+        inform_time,
+      </if>
+      <if test="informStatus != null" >
+        inform_status,
+      </if>
+      <if test="informVisit != null" >
+        inform_visit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="informId != null" >
+        #{informId,jdbcType=BIGINT},
+      </if>
+      <if test="informImage != null" >
+        #{informImage,jdbcType=VARCHAR},
+      </if>
+      <if test="informTitle != null" >
+        #{informTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="informTypeId != null" >
+        #{informTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="informContent != null" >
+        #{informContent,jdbcType=VARCHAR},
+      </if>
+      <if test="informAuthor != null" >
+        #{informAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="informTime != null" >
+        #{informTime,jdbcType=DATE},
+      </if>
+      <if test="informStatus != null" >
+        #{informStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="informVisit != null" >
+        #{informVisit,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="guet.hxm.rc.entity.InformExample" resultType="java.lang.Integer" >
+    select count(*) from inform
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update inform
+    <set >
+      <if test="record.informId != null" >
+        inform_id = #{record.informId,jdbcType=BIGINT},
+      </if>
+      <if test="record.informImage != null" >
+        inform_image = #{record.informImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.informTitle != null" >
+        inform_title = #{record.informTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.informTypeId != null" >
+        inform_type_id = #{record.informTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.informContent != null" >
+        inform_content = #{record.informContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.informAuthor != null" >
+        inform_author = #{record.informAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.informTime != null" >
+        inform_time = #{record.informTime,jdbcType=DATE},
+      </if>
+      <if test="record.informStatus != null" >
+        inform_status = #{record.informStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.informVisit != null" >
+        inform_visit = #{record.informVisit,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update inform
+    set inform_id = #{record.informId,jdbcType=BIGINT},
+      inform_image = #{record.informImage,jdbcType=VARCHAR},
+      inform_title = #{record.informTitle,jdbcType=VARCHAR},
+      inform_type_id = #{record.informTypeId,jdbcType=INTEGER},
+      inform_content = #{record.informContent,jdbcType=VARCHAR},
+      inform_author = #{record.informAuthor,jdbcType=VARCHAR},
+      inform_time = #{record.informTime,jdbcType=DATE},
+      inform_status = #{record.informStatus,jdbcType=VARCHAR},
+      inform_visit = #{record.informVisit,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="guet.hxm.rc.entity.Inform" >
+    update inform
+    <set >
+      <if test="informImage != null" >
+        inform_image = #{informImage,jdbcType=VARCHAR},
+      </if>
+      <if test="informTitle != null" >
+        inform_title = #{informTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="informTypeId != null" >
+        inform_type_id = #{informTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="informContent != null" >
+        inform_content = #{informContent,jdbcType=VARCHAR},
+      </if>
+      <if test="informAuthor != null" >
+        inform_author = #{informAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="informTime != null" >
+        inform_time = #{informTime,jdbcType=DATE},
+      </if>
+      <if test="informStatus != null" >
+        inform_status = #{informStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="informVisit != null" >
+        inform_visit = #{informVisit,jdbcType=BIGINT},
+      </if>
+    </set>
+    where inform_id = #{informId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="guet.hxm.rc.entity.Inform" >
+    update inform
+    set inform_image = #{informImage,jdbcType=VARCHAR},
+      inform_title = #{informTitle,jdbcType=VARCHAR},
+      inform_type_id = #{informTypeId,jdbcType=INTEGER},
+      inform_content = #{informContent,jdbcType=VARCHAR},
+      inform_author = #{informAuthor,jdbcType=VARCHAR},
+      inform_time = #{informTime,jdbcType=DATE},
+      inform_status = #{informStatus,jdbcType=VARCHAR},
+      inform_visit = #{informVisit,jdbcType=BIGINT}
+    where inform_id = #{informId,jdbcType=BIGINT}
+  </update>
+</mapper>

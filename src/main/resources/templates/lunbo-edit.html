@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" />
+    <script type="text/javascript" th:src="@{/script/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/layui/layui.js}"></script>
+    <title>轮播图编辑</title>
+</head>
+<body>
+        <img th:src="${image.imageUrl}" width="280" style="margin-left: 160px;margin-top: 10px;" height="160">
+        <form class="layui-form" id="imageForm" style="margin-top: 5px;">
+            <div class="layui-form-item">
+                <label class="layui-form-label">图片名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="imageName" lay-verify="required" th:value="${image.imageName}" placeholder="请输入名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">链接地址</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="imageUrlAddr" th:value="${image.imageUrlAddr}" placeholder="请输入地址" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">新窗口打开</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="imageIsBlank" value="1" th:checked="${image.imageIsBlank == '1'}" lay-skin="switch" lay-filter="required" lay-text="是|否">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">出现次序</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="imageOrder" th:value="${image.imageOrder}" lay-verify="required|number" placeholder="请输入出现次序" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">图片描述</label>
+                <div class="layui-input-block" style="width: 400px;">
+                    <textarea name="imageDesc" placeholder="请输入描述" lay-verify="required" class="layui-textarea" th:text="${image.imageDesc}"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-radius" lay-submit="" lay-filter="sub">修改</button>
+                </div>
+            </div>
+        </form>
+    <script>
+        layui.use('form', function(){
+            var form = layui.form;
+            //提交表单
+            form.on('submit(sub)', function (data) {
+                $.ajax({
+                    type: "PUT",
+                    url: '[[@{/admin/lunbo/}]]'+"[[${image.imageId}]]",
+                    data: $("#imageForm").serialize(),
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.code == 0) {
+                            var id = layer.msg('修改成功',{
+                                time:false,
+                                btn:['知道了'],
+                                yes:function () {
+                                    layer.close(id);
+                                }
+                            });
+                        } else {
+                            var id = layer.msg('修改失败',{
+                                time:false,
+                                btn:['知道了'],
+                                yes:function () {
+                                    layer.close(id);
+                                }
+                            });
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

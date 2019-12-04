@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" />
+    <script type="text/javascript" th:src="@{/script/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/layui/layui.js}"></script>
+    <title>用户修改</title>
+    <style>
+        #userForm {
+            margin-left: 90px;
+            margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form" id="userForm">
+    <input type="hidden" name="userId" th:value="${user.userId}"  readonly autocomplete="off" class="layui-input">
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-inline">
+            <input type="text" th:value="${user.username}"  readonly autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" for="addTime">加入时间</label>
+        <div class="layui-input-inline">
+            <input type="text" name="addTime" th:value="${#dates.format(user.addTime,'yyyy-MM-dd')}" id="addTime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">角色</label>
+        <div class="layui-input-inline">
+            <select name="userType" lay-verify="required">
+                <option value="">请选择角色</option>
+                <option value="super" th:selected="${user.userType == 'super'}">超级管理员</option>
+                <option value="normal" th:selected="${user.userType == 'normal'}">管理员</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block" style="margin-left: 36%;">
+            <button class="layui-btn" lay-submit="" lay-filter="sub">确定</button>
+        </div>
+    </div>
+</form>
+<script>
+    layui.use(['form', 'laydate'], function () {
+        var form = layui.form;
+        var layer = layui.layer;
+        var laydate = layui.laydate;
+        //日期
+        laydate.render({
+            elem: '#addTime'
+        });
+        //提交表单
+        form.on('submit(sub)', function (data) {
+            $.ajax({
+                type: "PUT",
+                url: '[[@{/admin/userEdit}]]',
+                data: $("#userForm").serialize(),
+                dataType: "json",
+                success: function (result) {
+                    if (result.code == 0) {
+                        var id = layer.msg('修改成功',{
+                            time:false,
+                            btn:['知道了'],
+                            yes:function () {
+                                layer.close(id);
+                            }
+                        });
+                    } else {
+                        var id = layer.msg(result.msg,{
+                            time:false,
+                            btn:['知道了'],
+                            yes:function () {
+                                layer.close(id);
+                            }
+                        });
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

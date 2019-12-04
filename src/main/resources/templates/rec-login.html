@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>表单的注册/登录</title>
+    <meta content="width=device-width, initial-scale=1,user-scalable=no" name="viewport">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <!--引入第三方字体图标插件库-->
+    <link rel="stylesheet" th:href="@{/css/font/iconfont.css}" />
+    <link th:href="@{/css/styles.min.css}" rel="stylesheet">
+    <link rel="shortcut icon" th:href="@{/imgs/nav-top/icon.png}"  type="image/x-icon">
+    <!--javascript-->
+    <script type="text/javascript" th:src="@{/js/jquery-2.0.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/common.js}"></script>
+    <script type="text/javascript" th:src="@{/js/checkform.js}"></script>
+</head>
+
+<body class="login">
+<div id="phizzForm" class="form login-form">
+    <form id="loginContent" method="post" onsubmit="return login()">
+        <!--登录页面-->
+        <div class="formPanel">
+            <h2>登录</h2>
+            <p>请正确填写您的用户名和密码</p>
+            <fieldset>
+                <div class="formRow">
+                    <label for="name">邮箱/用户名</label>
+                    <span class="inputAddOn"><i class="icon-youxiang"></i></span>
+                    <input type="text" value="" placeholder="邮箱" name="email" id="name">
+                </div>
+                <div class="formRow">
+                    <label>密码</label>
+                    <span class="inputAddOn"><i class="icon-lock"></i></span>
+                    <input type="password" value="" name="password" placeholder="6-16位密码" class="mima_dd ">
+                    <input type="text" value="" placeholder="6-16位密码" class="mima_wz " style="display:none;">
+                    <a class="eyes_box " data-show="1" href="javascript:void(0);"><i class="icon-htmal5icon09"></i></a>
+                </div>
+                <div class="formRow log">
+                    <a href="#">没有账号？点击此处注册！</a>
+                </div>
+                <button class="buttonNext" type="submit">登录</button>
+            </fieldset>
+        </div>
+    </form>
+</div>
+<!--注册页面-->
+<div id="registerForm" class="form register-form">
+    <form method="post" id="registerContent" onsubmit="return register()">
+        <div class="formPanel test">
+            <h2>注册</h2>
+            <p style="text-align: center;font-size: 1.3em;margin-bottom: 10px">
+                <a href="#" style="color: rgb(46, 204, 113);;">已有账户？点击登录</a>
+            </p>
+            <fieldset>
+                <div class="formRow">
+                    <label>邮箱</label>
+                    <span class="inputAddOn"><i class="icon-youxiang"></i></span>
+                    <input class="reg_email" type="text" id="email" name="email" placeholder="邮箱">
+                    <span class="tip email_hint"></span>
+                </div>
+                <div class="formRow">
+                    <label>密码</label>
+                    <span class="inputAddOn"><i class="icon-lock"></i></span>
+                    <input type="password" value="" name="password" placeholder="6-16位密码" class="mima_dd reg_password">
+                    <input type="text" value="" placeholder="6-16位密码" class="mima_wz  reg_password" style="display:none;">
+                    <span class="tip password_hint"></span>
+                    <a class="eyes_box " data-show="1" href="javascript:void(0);"><i class="icon-htmal5icon09"></i></a>
+                </div>
+                <div class="formRow">
+                    <label>再次确认密码</label>
+                    <span class="inputAddOn"><i class="icon-lock"></i></span>
+                    <input type="password" value="" placeholder="6-16位密码" class="mima_dd reg_confirm ">
+                    <input type="text" value="" placeholder="6-16位密码" class="mima_wz reg_confirm" style="display:none;">
+                    <span class="tip confirm_hint"></span>
+                    <a class="eyes_box " data-show="1" href="javascript:void(0);"><i class="icon-htmal5icon09"></i></a>
+                </div>
+                <div class="formRow">
+                    <label>请填写您的真实姓名</label>
+                    <span class="inputAddOn"><i class="icon-yonghu"></i></span>
+                    <input class="reg_name" type="text" name="name" value="" placeholder="请输入您的真实姓名">
+                    <span class="tip name_hint"></span>
+                </div>
+                <div class="formRow xingbie">
+                    <label>xingbie</label>
+                    <span class="inputAddOn"><i class="icon-xingbie"></i></span>
+                    <select name="sex">
+                        <option value="disabled selected">请选择您的性别</option>
+                        <option value="M">男</option>
+                        <option value="F">女</option>
+                    </select>
+                </div>
+                <div class="formRow">
+                    <label>出生年月</label>
+                    <span class="inputAddOn"><i class="icon-calendar"></i></span>
+                    <input class="reg_birthday" name="birthday" type="date" value="" placeholder="出生日期      [yyyy-mm-dd]">
+                    <span class="tip birth_hint"></span>
+
+                </div>
+                <div class="formRow">
+                    <label>身份证/护照</label>
+                    <span class="inputAddOn"><i class="icon-Id"></i></span>
+                    <input class="reg_id" type="text" name="cardId" value="" placeholder="身份证/护照">
+                    <span class="tip id_hint"></span>
+                </div>
+                <div class="formRow">
+                    <label>Confirm password</label>
+                    <span class="inputAddOn"><i class="icon-daxue"></i></span>
+                    <input type="text" value="" name="graduateSch" placeholder="毕业院校">
+                </div>
+                <div class="formRow ">
+                    <label>验证码</label>
+                    <span class="inputAddOn"><i class="icon-Id"></i></span>
+                    <input type="text" name="verifyCode" value="" id="input1" style="width: 174px;">
+                    <button  class="yzm-btn" type="button" onclick="emailVerify()">获取验证码</button>
+                </div>
+
+                <button class="buttonNext" type="submit">注册</button>
+            </fieldset>
+        </div>
+    </form>
+</div>
+<script>
+    function login() {
+        $.ajax({
+            type: "POST",
+            url: '[[@{/rec/login}]]',
+            data: $("#loginContent").serialize(),
+            dataType: "json",
+            success: function(result) {
+                if(result.code == 0) {
+                    location.href = "[[@{/rec/index}]]";
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+        return false;
+    }
+
+    function emailVerify() {
+        $.ajax({
+            type: "GET",
+            url: '[[@{/rec/emailVerify}]]',
+            data: {email:$("#email").val()},
+            dataType: "json",
+            success: function(result) {
+                if(result.code == 0) {
+                    alert("邮箱验证码已经发送到您的邮箱中！请拿邮箱中的验证码填充，完成注册！");
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+
+    function register() {
+        $.ajax({
+            type: "POST",
+            url: '[[@{/rec/register}]]',
+            data: $("#registerContent").serialize(),
+            dataType: "json",
+            success: function(result) {
+                if(result.code == 0) {
+                    alert("注册成功!");
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+        return false;
+    }
+
+    function change() {
+        $('#kaptchaImage').click(function() {
+            $(this).attr('src', '[[@{/rc/getVerifyCode?}]]' + Math.floor(Math.random() * 100));
+        })
+    }
+</script>
+</body>
+<style>
+    .formRow {
+        position: relative;
+    }
+
+    .formRow span.tip {
+        position: absolute;
+        top: 13px;
+        font-size: 1.8em;
+        left: 356px;
+        width: 40px;
+        text-align: left
+    }
+
+    .eyes_box {
+        position: absolute;
+        top: 12px;
+        left: 324px;
+        display: inline-block;
+        width: 1.5rem;
+        text-align: right;
+    }
+
+    .eyes_box i {
+        color: #999;
+        font-size: 1.9em;
+    }
+
+    .formRow a:hover {
+        text-decoration: none;
+    }
+
+    .test h2 {
+        font-size: 1.9em;
+        margin: 0 0 20px;
+        text-align: center;
+    }
+    .yzm-btn{
+        width: 120px;
+        height: 40px;
+        color:rgb(46, 204, 113) ;
+    }
+
+</style>
+
+</html>

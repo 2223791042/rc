@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+	<!--学术研究-->
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>光子学研究中心网站</title>
+		<!--网站左上角的图片-->
+		<link rel="shortcut icon" href="imgs/nav-top/icon.png" mce_href="images/icon.png" type="image/x-icon">
+		<link href="css/style.css" type="text/css" rel="stylesheet">
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/com.css" />
+		<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/scroll.js"></script>
+	</head>
+
+	<body>
+			<!--导航栏-1-->
+			<div class="index-top">
+				<div class="index-topbox">
+					<div class="i-top-one">
+						<a href="index.html"><img class="i-img1" src="imgs/nav-top/logo.png"></a>
+					</div>
+					<div class="i-top-three">
+						<i><p class="i-pp2">135-5773-2847</p></i>
+						<div class="i-top-three-a">
+							<input type="text" class="i-inp1" id="key" name="key" placeholder="Search...">
+							<input type="image" src="imgs/nav-top/search.jpg" class="i-img3" onclick="jumpSearch()">
+						</div>
+					</div>
+					<div class="i-top-two">
+						<ul>
+							<li>
+								<a href="#">
+									<div class="i-top-two-a">
+										<img src="imgs/nav-top/top_icon2.png" class="i-img2">
+									</div>
+									<div class="i-top-two-b">
+										<p class="i-pp1">广西重点<br>光子学研究所</p>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="#">
+									<div class="i-top-two-a">
+										<img src="imgs/nav-top/top_icon1.png" class="i-img2">
+									</div>
+									<div class="i-top-two-b">
+										<p class="i-pp1">桂林市重点<br>先进科研单位</p>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="index-top">
+				<div class="nav">
+					<ul>
+						<li style="background:none">
+							<a href="index.html">
+								<p class="i-pp3">首页</p>
+								<p class="i-pp4">Home</p>
+							</a>
+						</li>
+						<li>
+							<a href="AboutUs.html">
+								<p class="i-pp3">关于我们</p>
+								<p class="i-pp4">Introduction</p>
+							</a>
+						</li>
+						<li>
+							<a href="AcademicResearch.html">
+								<p class="i-pp3">学术研究</p>
+								<p class="i-pp4">research</p>
+							</a>
+						</li>
+						<li>
+							<a href="TalentTrain.html">
+								<p class="i-pp3">人才培养</p>
+								<p class="i-pp4"> train</p>
+							</a>
+						</li>
+						<li>
+							<a href="Faculty.html">
+								<p class="i-pp3">师资队伍</p>
+								<p class="i-pp4">faculty</p>
+							</a>
+						</li>
+						<li>
+							<a href="platform.html">
+								<p class="i-pp3">科研平台</p>
+								<p class="i-pp4">platform</p>
+							</a>
+						</li>
+						<li>
+							<a href="NanoDegree.html">
+								<p class="i-pp3">微学位项目</p>
+								<p class="i-pp4">Nano degree</p>
+							</a>
+						</li>
+						<li>
+							<a href="OpenAcademic.html">
+								<p class="i-pp3">开源学术</p>
+								<p class="i-pp4">academic</p>
+							</a>
+						</li>
+						<li>
+							<a href="JoinUs.html">
+								<p class="i-pp3">加入我们</p>
+								<p class="i-pp4">join us</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--banner条-->
+			<div class="bannermod" style="background:url(img/banner_01.jpg) center 0 no-repeat;">
+				<div class="pagemain">
+					<div class="bannermod1pos">
+						<div class="bannermod1bg"></div>
+						<div class="bannermod1">
+							<div class="bannertit1">新闻动态</div>
+							<div class="bannertit2">News Information</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<!--导航&网站目录-->
+		<div class="index-top gd-one">
+			<div class="index-one">
+				<ul class="one-ul">
+					<li>
+						<a href="news_list.html" class="gd-pp1 ">时讯新闻</a>
+					</li>
+					<li>
+						<a href="inform_list.html" class="gd-pp1 g-hover">通知公告</a>
+					</li>
+				</ul>
+				<div class="gd-one-a">
+					<img src="img/gdzx_05.jpg" class="gd-img2">
+					<p class="gd-pp2">当前位置：</p>
+					<a href="index.html" class="gd-pp2 gd-pp222">首页&nbsp;&gt;</a>
+					<a href="news_list.html" class="gd-pp2">&nbsp;最新动态&nbsp;&gt;</a>
+					<a class="gd-pp2">&nbsp;时讯新闻</a>
+				</div>
+
+			</div>
+		</div>
+		<!--  文章详情内容-->
+		<div class="index-top">
+			<div class="index-one">
+				<div class="tv-one" id="informTitle">
+				</div>
+				<div class="zxdt-two">
+					<div class="lineset" id="informContent">
+					</div>
+				</div>
+
+				<div class="share">
+					<!--分享文章-->
+					<div class="bdsharebuttonbox bdshare-button-style0-24" data-bd-bind="1550981550704" >
+						<span class="LShare">分享到：</span>
+						<a href="#" class="bds_more" data-cmd="more"></a>
+						<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+						<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+						<a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+						<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+						<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+					</div>
+					<script>
+						window._bd_share_config = {
+							"common": {
+								"bdSnsKey": {},
+								"bdText": "",
+								"bdMini": "1",
+								"bdMiniList": false,
+								"bdPic": "",
+								"bdStyle": "0",
+								"bdSize": "24"
+							},
+							"share": {}
+						};
+						with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+					</script>
+
+					<!--打印和关闭-->
+					<div class="contentdygb">
+						<a href="javascript:window.print()"><img src="img/print.jpg" alt="" width="64" height="64" original="img/print.jpg" style="display: inline;"></a>
+						<a href="javascript:window.close()"><img src="img/close.jpg" alt="" width="64" height="64" original="img/close.jpg" style="display: inline;"></a>
+					</div>
+				</div>
+				<!--上一篇下一篇新闻-->
+				<div class="tv-three" id="informPage">
+				</div>
+			</div>
+		</div>
+
+		<!--网站地图-->
+		<div class="index-top index-footer">
+			<div class="index-one  index-map">
+				<div class="footer-a">
+					<a href="#" class="i-pp29">关于我们</a>
+					<div class="footer-a-a">
+
+						<a href="AboutUs.html" class="i-pp30">中心简介</a>
+						<a href="AboutUs.html" class="i-pp30">使命&愿景</a>
+						<a href="Faculty.html" class="i-pp30">师资力量</a>
+						<a href="TalentTrain.html" class="i-pp30">人才培养</a>
+					</div>
+				</div>
+				<div class="footer-b">
+					<a href="#" class="i-pp29">研究方向</a>
+					<div class="footer-b-a">
+
+						<a href="#" class="i-pp30">光纤技术</a>
+
+						<a href="#" class="i-pp30">光动力操控</a>
+
+						<a href="#" class="i-pp30">光纤传感</a>
+
+						<a href="#" class="i-pp30">光单子探测</a>
+
+						<a href="#" class="i-pp30">器件测试</a>
+
+					</div>
+				</div>
+				<div class="footer-c">
+					<a href="news_list.html" class="i-pp29">新闻动态</a>
+					<div class="footer-c-a">
+						<a href="news_list.html" class="i-pp30">时讯新闻</a>
+						<a href="inform_list.html" class="i-pp30">通知公告</a>
+					</div>
+				</div>
+				<div class="footer-d">
+					<a href="#" class="i-pp31">联系我们</a>
+					<div class="footer-d-a">
+						<p class="i-pp35">地址：中国广西桂林市金鸡路1号</p>
+						</br>
+						<p class="i-pp35">邮箱：1610424323@qq.com </p>
+						<br>
+						<p class="i-pp35">电话：135-5773-2847 </p>
+					</div>
+
+				</div>
+				<div class="footer-e">
+					<div class="footer-e-a">
+						<div class="footer-e-b">
+							<img src="img/index_96.jpg" tppabs="images/index_96.jpg" class="i-img10">
+							<p class="i-pp34">关注我们</p>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="index-top footer-two ">
+			<p class="footer-pp1 "> 版权所有©2020桂电光子学研究中心&nbsp; | &nbsp;技术设计支持：
+				<a target="_blank ">冰魅儿设计</a>
+				&nbsp; | &nbsp;
+				<a target="_blank " href="http://localhost:8080/rc/admin/login">后台登录</a>
+			</p>
+		</div>
+		</div>
+	</body>
+	<style type="text/css">
+		.navs::after {
+			content: ".";
+			clear: both;
+			display: block;
+			overflow: hidden;
+			font-size: 0;
+			height: 0;
+		}
+		
+		.bg-borad {
+			width: 100%;
+			background: #FFFFFF;
+			padding-bottom: 40px;
+		}
+		
+		.content {
+			width: 1200px;
+			margin: 0 auto;
+			position: relative;
+		}
+		
+		h3 {
+			text-align: center;
+			font-size: 30px;
+			font-weight: 100;
+			padding: 40px 0;
+		}
+		/*头部导航*/
+		
+		.index-top {
+			width: 100%;
+			float: left;
+			min-width: 1200px;
+		}
+		
+		.index-one {
+			width: 1200px;
+			margin: 0 auto;
+		}
+		
+		.index-one {
+			width: 1200px;
+			/* margin: 0 auto; */
+			margin-left: 159.6px;
+		}
+		
+		.one-ul {
+			width: 100%;
+		}
+		
+		.one-ul li {
+			margin-right: 10px;
+			float: left;
+		}
+		
+		.gd-one-a {
+			float: right;
+		}
+		
+		.gd-img2 {
+			width: 15px;
+			height: 14px;
+			float: left;
+			margin-top: 22px;
+		}
+		
+		img {
+			border: none;
+		}
+		
+		.gd-one {
+			height: 61px;
+			background: #efefef;
+		}
+		
+		.gd-pp2 {
+			font-size: 12px;
+			color: #515151;
+			float: left;
+			line-height: 61px;
+			margin-left: 5px;
+		}
+		
+		.gd-pp1 {
+			float: left;
+			height: 33px;
+			padding: 0 22px;
+			margin-top: 15px;
+			text-align: center;
+			line-height: 33px;
+			color: #2b2b2b;
+			font-size: 15px;
+		}
+		
+		.one-ul li a:hover {
+			background: #008c3e;
+			color: #fff;
+			border-radius: 2px;
+			-o-border-radius: 2px;
+			-moz-border-radius: 2px;
+			-webkit-border-radius: 2px;
+		}
+		
+		.g-hover {
+			background: #008c3e;
+			color: #fff;
+			border-radius: 2px;
+			-o-border-radius: 2px;
+			-moz-border-radius: 2px;
+			-webkit-border-radius: 2px;
+		}
+		/*文章内容*/
+		
+		.index-top {
+			width: 100%;
+			float: left;
+			min-width: 1200px;
+		}
+		
+		.tv-one {
+			width: 1200px;
+			float: left;
+			height: 102px;
+			margin-top: 33px;
+			border-bottom: 1px solid #efeff1;
+		}
+		
+		.tv-pp1 {
+			font-size: 25px;
+			color: #6a6a6a;
+			font-weight: bold;
+			line-height: 51px;
+			text-align: center;
+			width: 1200px;
+		}
+		
+		.tv-one-a {
+			width: 50%;
+			text-align: right;
+			line-height: 43px;
+			float: left;
+		}
+		
+		.news_detail_group_list {
+			width: 50%;
+			text-align: left;
+			float: right;
+			padding-top: 10px;
+		}
+		
+		.news_belong_group {
+			display: inline-block;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			height: 25px;
+			line-height: 23px;
+			margin-right: 15px;
+			padding: 0 10px;
+			border: 1px solid #c7c7c7;
+			border-radius: 3px;
+			color: #6f6f6f;
+			font-size: 14px;
+		}
+		
+		.tv-pp2 {
+			color: #9fa0a0;
+			font-family: "SimSun";
+		}
+		
+		.tv-pp3 {
+			color: #000000;
+			font-family: "SimSun";
+			margin-right: 28px;
+		}
+		
+		.zxdt-two {
+			width: 1200px;
+			float: left;
+			height: auto;
+			margin-top: 33px;
+			margin-bottom: 10px;
+			border-bottom: 1px solid #efeff1;
+			line-height: 28px;
+			padding-bottom: 30px;
+		}
+		
+		.lineset {
+			float: left;
+			width: 100%;
+			line-height: 38px;
+		}
+		
+		.tv-three {
+			height: 70px;
+			width: 1200px;
+			float: left;
+			margin-bottom: 20px;
+		}
+		
+		.tv-pp4 {
+			float: left;
+			width: 600px;
+			overflow: hidden;
+			line-height: 70px;
+			color: #404145;
+			/*font-size: 12px;
+			font-family: "SimSun";*/
+			text-align: center;
+		}
+		
+		.tv-pp5 {
+			float: right;
+			width: 600px;
+			overflow: hidden;
+			line-height: 70px;
+			color: #404145;
+			/*font-size: 12px;
+			font-family: "SimSun";*/
+			text-align: center;
+		}
+		
+		.contentdygb {
+			width: 100%;
+			line-height: 35px;
+			margin: 0 auto;
+			text-align: center;
+			padding-top: 30px;
+		}
+		
+		.contentdygb a {
+			display: inline;
+			padding: 5px;
+			color: #555;
+			text-decoration: none;
+			outline: none;
+		}
+		
+		.bdsharebuttonbox {
+			margin:0 auto ;
+			width: 26%;
+		}
+		
+		.bdsharebuttonbox .LShare {
+			display: inline;
+			float: left;
+			line-height: 24px;
+			height: 24px;
+			cursor: pointer;
+			margin: 6px 6px 6px 0;
+			font-size: 16px;
+		}
+		
+		.share {
+			float: right;
+			width: 100%;
+		}
+	</style>
+	<script src="./js/project-path.js"></script>
+	<script>
+		function jumpSearch(){
+			location.href="GlobelSearch.html?key="+encodeURI($("#key").val());
+		}
+		function GetQueryString(name)
+		{
+			var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if(r != null)
+			    return  unescape(r[2]);
+			return null;
+		}
+        window.onload= function () {
+            loadData();  //请求数据
+        };
+		function loadData() {
+            var informId = GetQueryString("informId");
+            if(informId != null)
+            {
+                $.ajax({
+                    async: false,
+                    type: "GET",
+                    url:  path+"/inform/"+informId,
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.code == 0) {
+                            $("#informTitle").empty();
+                            $("#informContent").empty();
+                            var data = result.data;
+                            console.log(data);
+                            var content = "<p class=\"tv-pp1\">"+data.informTitle+"</p>\n" +
+                                "\t<div class=\"tv-one-a\">\n" +
+                                "\t\t<span class=\"tv-pp2\">日期：</span>\n" +
+                                "\t\t<span class=\"tv-pp3\">"+data.informTime+"</span>\n" +
+                                "\t</div>\n" +
+                                "\t<div class=\"news_detail_group_list\"><span class='news_belong_group'>"+data.informType.typeName+"</span></div>";
+							$("#informTitle").append(content);
+                            $("#informContent").append(data.informContent);
+                        }
+                    }
+                });
+                $.ajax({
+                    async: false,
+                    type: "GET",
+                    url:  path+"/inform/page/"+informId,
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.code == 0) {
+                            $("#informPage").empty();
+                            var content = "";
+                            if(result.data.preInform != null){
+                                content += "<a class=\"tv-pp4\" href=\"inform_content.html?informId="+result.data.preInform.informId+"\">上一篇："+result.data.preInform.informTitle+"</a>";
+							}else{
+                                content += "<a class=\"tv-pp4\" href=\"javascript:void(0)\">上一篇：没有了</a>";
+							}
+							if(result.data.nextInform != null){
+                                content += "<a class=\"tv-pp5\" href=\"inform_content.html?informId="+result.data.nextInform.informId+"\">下一篇："+result.data.nextInform.informTitle+"</a>";
+							}else{
+                                content += "<a class=\"tv-pp5\" href=\"javascript:void(0)\">下一篇：没有了</a>";
+							}
+							$("#informPage").append(content);
+                        }
+                    }
+                });
+            }
+        }
+	</script>
+
+</html>

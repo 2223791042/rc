@@ -1,0 +1,63 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "microsoft yahei";
+	font-size: 15px;
+	color: #666666;
+}
+
+ul,
+li {
+	list-style: none;
+}
+
+a {
+	display: block;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+img {
+	border: none;
+}
+
+input:focus {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-user-modify: read-write-plaintext-only;
+}
+
+h1,
+h2,
+h3 {
+	font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+	font-weight: 100
+}
+
+h1,
+h2,
+h3,
+h5,
+h4,
+h6 {
+	text-align: center;
+}
+
+
+.row {
+	display: flex;
+	/*padding-bottom: 40px;*/
+}
+
+.row .col-md-3,
+.col-md-4 {
+	flex: 1;
+	text-align: center;
+}
+
+.style-feature:hover {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19);
+}
+

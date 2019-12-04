@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" th:href="@{/imgs/nav-top/icon.png}"  mce_href="imgs/upload/partarn/icon.png" type="image/x-icon">
+	<title>桂电光子学研究中心后台登录系统</title>
+	<link rel="stylesheet" th:href="@{/css/login.css}" />
+	<script type="text/javascript" th:src="@{/script/jquery-3.3.1.min.js}"></script>
+</head>
+
+<body>
+<div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="https://pos.baidu.com/wh/o.htm?ltr=" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div>
+<div class="login_box">
+	<div class="login_l_img"><img th:src="@{/imgs/login/login-img1.png}"></div>
+	<div class="login">
+		<div class="login_logo">
+			<a href="#"><img th:src="@{/imgs/login/login_logo.png}"></a>
+		</div>
+		<div class="login_name">
+			<p>后台管理系统</p>
+		</div>
+		<div id="loginForm">
+			<select name="userType">
+				<option value="disabled selected">请选择您的登录身份</option>
+				<option value="super">超级管理员</option>
+				<option value="normal">网站管理员</option>
+			</select>
+			<input type="text" name="username" placeholder="用户名">
+			<input type="password" name="password" placeholder="密码">
+			<input type="text" name="verifyCode" placeholder="验证码" style="width: 50%;">
+			<!--前端引用，通过change()方法，点击更换验证码图片-->
+			<img id="kaptchaImage" style="position: absolute;margin-left: 28px" th:src="@{/getVerifyCode}" onclick="change();">
+			<div class=" text-right">
+				<a href="javascript:void(0);" class="help forget_pwd" onclick="alert('请联系超级管理员!')">忘记密码?</a>
+			</div>
+			<input value="登录" style="width:100%;" type="button" onclick="submit()">
+		</div>
+	</div>
+	<div class="copyright">版权所有©2020桂电光子学研究中心  |  技术设计支持： 冰魅儿设计</div>
+</div>
+<div style="text-align:center;">
+</div>
+<script>
+    function change() {
+        $('#kaptchaImage').click(function () {
+            $(this).attr('src', '[[@{/getVerifyCode?}]]' + Math.floor(Math.random() * 100));
+        })
+    }
+    function submit() {
+        $.ajax({
+            type: "POST",
+            url: '[[@{/admin/login}]]',
+            data: {
+				username:$("input[name='username']").val(),
+				userType:$("select[name='userType']").val(),
+				password:$("input[name='password']").val(),
+                verifyCode:$("input[name='verifyCode']").val()
+			},
+            dataType: "json",
+            success: function (result) {
+                if (result.code == 0) {
+                    location.href="[[@{/admin/index}]]";
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+</script>
+</body>
+
+</html>

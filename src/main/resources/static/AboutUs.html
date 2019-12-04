@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="百度地图,百度地图API，百度地图自定义工具，百度地图所见即所得工具" />
+	<meta name="description" content="百度地图API自定义地图，帮助用户在可视化操作下生成百度地图" />
+	<title>光子学研究中心网站</title>
+	<link rel="shortcut icon" href="imgs/nav-top/icon.png" mce_href="imgs/upload/partarn/icon.png" type="image/x-icon">
+	<link href="css/style.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/com.css" />
+	<!--<script type="text/javascript" src="js/map.js"></script>-->
+	<script src="js/jquery-2.0.3.min.js" type="text/javascript"></script>
+	<!--获取百度地图-->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Cpovo7NQMzLPoU7BYVj02k7HxY13hUZi"></script>
+</head>
+<body>
+<!--导航栏-1-->
+<div class="navs">
+	<div class="index-top">
+		<div class="index-topbox">
+			<div class="i-top-one">
+				<a href="index.html"><img class="i-img1" src="imgs/nav-top/logo.png"></a>
+			</div>
+			<div class="i-top-three">
+				<i><p class="i-pp2">135-5773-2847</p></i>
+				<div class="i-top-three-a">
+					<input type="text" class="i-inp1" id="key" name="key" placeholder="Search...">
+					<input type="image" src="imgs/nav-top/search.jpg" class="i-img3" onclick="jumpSearch()">
+				</div>
+			</div>
+			<div class="i-top-two">
+				<ul>
+					<li>
+						<a href="#">
+							<div class="i-top-two-a">
+								<img src="imgs/nav-top/top_icon2.png" class="i-img2">
+							</div>
+							<div class="i-top-two-b">
+								<p class="i-pp1">广西重点<br>光子学研究所</p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<div class="i-top-two-a">
+								<img src="imgs/nav-top/top_icon1.png" class="i-img2">
+							</div>
+							<div class="i-top-two-b">
+								<p class="i-pp1">桂林市重点<br>先进科研单位</p>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="index-top">
+		<div class="nav">
+			<ul>
+				<li style="background:none">
+					<a href="index.html">
+						<p class="i-pp3">首页</p>
+						<p class="i-pp4">Home</p>
+					</a>
+				</li>
+				<li>
+					<a href="AboutUs.html">
+						<p class="i-pp3">关于我们</p>
+						<p class="i-pp4">Introduction</p>
+					</a>
+				</li>
+				<li>
+					<a href="AcademicResearch.html">
+						<p class="i-pp3">学术研究</p>
+						<p class="i-pp4">research</p>
+					</a>
+				</li>
+				<li>
+					<a href="TalentTrain.html">
+						<p class="i-pp3">人才培养</p>
+						<p class="i-pp4"> train</p>
+					</a>
+				</li>
+				<li>
+					<a href="Faculty.html">
+						<p class="i-pp3">师资队伍</p>
+						<p class="i-pp4">faculty</p>
+					</a>
+				</li>
+				<li>
+					<a href="platform.html">
+						<p class="i-pp3">科研平台</p>
+						<p class="i-pp4">platform</p>
+					</a>
+				</li>
+
+				<li>
+					<a href="NanoDegree.html">
+						<p class="i-pp3">微学位项目</p>
+						<p class="i-pp4">Nano degree</p>
+					</a>
+				</li>
+				<li>
+					<a href="OpenAcademic.html">
+						<p class="i-pp3">开源学术</p>
+						<p class="i-pp4">academic</p>
+					</a>
+				</li>
+				<li>
+					<a href="JoinUs.html">
+						<p class="i-pp3">加入我们</p>
+						<p class="i-pp4">join us</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--banner条-->
+	<div class="bannermod" style="background:url(img/banner/banner_eroll.jpg) center 0 no-repeat;">
+		<div class="pagemain">
+			<div class="bannermod1pos">
+				<div class="bannermod1bg"></div>
+				<div class="bannermod1">
+					<div class="bannertit1">关于我们</div>
+					<div class="bannertit2">About us</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<!--导航&网站目录-->
+<div class="index-top gd-one">
+	<div class="index-one">
+		<ul class="one-ul">
+			<li>
+				<a href="news2.html" class="gd-pp1 g-hover">研究所简介</a>
+			</li>
+		</ul>
+		<div class="gd-one-a">
+			<img src="img/gdzx_05.jpg" class="gd-img2">
+			<p class="gd-pp2">当前位置：</p>
+			<a href="index.html" class="gd-pp2 gd-pp222">首页&nbsp;&gt;</a>
+			<a class="gd-pp2" href="Faculty.html">&nbsp;关于我们</a>
+		</div>
+
+	</div>
+</div>
+<!--研究所介绍-->
+<div class="index-top ">
+	<div class="lab-b wrap">
+		<div class="about_wenzi">
+			<div class="fk-editor">ABOUT US</div>
+			<div class="fk-editor">
+				<div><b style="font-size: 24px; line-height: 42px;color: #008c3e">研究中心简介</b></div>
+				<div><b style="font-size: 24px; line-height: 42px;">——</b></div>
+			</div>
+			<div class="fk-editor">
+				<span style="font-size: 14px;"><font color="#666666">“光子”与“电子”是信息产业的两大基石。继“电子技术”之后，“光子技术”将成为新一代信息技术产业的重要先导性关键技术， 其触角已经遍及人类需求的各个方面。光子学（Photonics）是研究作为信息和能量载体的光子的行为及其应用的科学。包括光子的 产生、发射、传输、调变、信号处理、切换、放大及传感。本研究中心主要以光纤技术为核心，发展了围绕特种功能光纤的光子集成 技术、光动力操控技术和光纤传感技术。以这些核心技术为基础，通过与材料、生命、化学等学科的交叉，将其应用拓展到各个领域。</font></span><br>
+			</div>
+		</div>
+		<div class="about_img">
+			<img src="img/about_img.jpg">
+		</div>
+	</div>
+</div>
+<!--合作伙伴-->
+<div class="index-top ">
+	<div class="lab-b wrap">
+		<div class="about_wenzi3">
+			<div class="fk-editor-cp">Group Partners</div>
+			<div class="fk-editor-cp">
+				<div><b style="font-size: 24px; line-height: 42px;color: #008c3e">合作伙伴</b></div>
+				<div><b style="font-size: 24px; line-height: 42px;">——</b></div>
+			</div>
+		</div>
+		<div class="yq-one" id="partnerList">
+		</div>
+	</div>
+</div>
+<!--使命&愿景-->
+<div class="index-top ">
+	<div class="lab-b wrap clear">
+		<div class="about_img2">
+			<img src="img/about2.png">
+		</div>
+		<div class="about_wenzi2">
+			<div class="fk-editor">Mission & Vision</div>
+			<div class="fk-editor">
+				<div><b style="font-size: 24px; line-height: 42px;color: #008c3e">使命&愿景</b></div>
+				<div><b style="font-size: 24px; line-height: 42px;">——</b></div>
+			</div>
+			<div class="fk-editor">
+				<span style="font-size: 14px;"><font color="#666666">项目秉承“立足中国、面向世界”的原则，从世界范围选聘最好的师资，以知识、能力、思维与品格相融合的课程与训练作为主体，通过提供高质量的课程学习、丰富的专业实践、多方位学术交流与文化体验活动、与业界高层人士的研讨和对话等环节，帮助学生在全球化背景下观察中国、探究世界发展的共性问题，为学生提供全方位认识和探索中国与世界的独特机会和终身学习网络以及全球校友平台，促进学生批判性思维、跨文化理解力和全球领导力的提升。经过若干年的发展建设，使其成为我国光子信息产业高端技术人才培养的一个重要基地，成为开拓我国信息光子产业的先进技术源头之一。</font></span><br>
+			</div>
+		</div>
+	</div>
+</div>
+<!--联系我们-->
+<div class="index-top ">
+	<div class="lab-b wrap clear">
+		<div class="about_wenzi3">
+			<div class="fk-editor-cp">Contact US</div>
+			<div class="fk-editor-cp">
+				<div><b style="font-size: 24px; line-height: 42px; color: #008c3e;">联系我们</b></div>
+				<div><b style="font-size: 24px; line-height: 42px;">——</b></div>
+			</div>
+		</div>
+		<!--详细地址介绍-->
+		<div class="address">
+			<p class="add-1">地址：中国广西桂林市金鸡路1号</p>
+			</br>
+			<p class="add-2">邮箱：1610424323@qq.com </p>
+			<br>
+			<p class="add-3">电话：135-5773-2847 </p>
+			<br>
+			<p class="add-4">微信：prc-guet</p>
+			<br>
+		</div>
+		<!--引入百度地图生成器-->
+		<div class="i-map">
+			<div class="map" id="map"></div>
+		</div>
+
+	</div>
+</div>
+
+<!--网站地图-->
+<div class="index-top index-footer">
+	<div class="index-one  index-map">
+		<div class="footer-a">
+			<a href="#" class="i-pp29">关于我们</a>
+			<div class="footer-a-a">
+
+				<a href="AboutUs.html" class="i-pp30">中心简介</a>
+				<a href="AboutUs.html" class="i-pp30">使命&愿景</a>
+				<a href="Faculty.html" class="i-pp30">师资力量</a>
+				<a href="TalentTrain.html" class="i-pp30">人才培养</a>
+			</div>
+		</div>
+		<div class="footer-b">
+			<a href="#" class="i-pp29">研究方向</a>
+			<div class="footer-b-a">
+				<a href="javacript:void(0);" class="i-pp30">光纤技术</a>
+				<a href="javacript:void(0);" class="i-pp30">光动力操控</a>
+				<a href="javacript:void(0);" class="i-pp30">光纤传感</a>
+				<a href="javacript:void(0);" class="i-pp30">光单子探测</a>
+				<a href="javacript:void(0);"  class="i-pp30">器件测试</a>
+			</div>
+		</div>
+		<div class="footer-c">
+			<a href="news_list.html" class="i-pp29">新闻动态</a>
+			<div class="footer-c-a">
+				<a href="news_list.html" class="i-pp30">时讯新闻</a>
+				<a href="inform_list.html" class="i-pp30">通知公告</a>
+			</div>
+		</div>
+		<div class="footer-d">
+			<a href="#" class="i-pp31">联系我们</a>
+			<div class="footer-d-a">
+				<p class="i-pp35">地址：中国广西桂林市金鸡路1号</p>
+				</br>
+				<p class="i-pp35">邮箱：1610424323@qq.com </p>
+				<br>
+				<p class="i-pp35">电话：135-5773-2847 </p>
+				<br>
+
+			</div>
+
+		</div>
+		<div class="footer-e">
+			<div class="footer-e-a">
+				<div class="footer-e-b">
+					<img src="img/index_96.jpg" class="i-img10">
+					<p class="i-pp34">关注我们</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="index-top footer-two ">
+	<p class="footer-pp1 "> 版权所有©2020桂电光子学研究中心&nbsp; | &nbsp;技术设计支持：
+		<a target="_blank ">冰魅儿设计</a>
+		&nbsp; | &nbsp;
+		<a target="_blank " href="http://localhost:8080/rc/admin/login" >后台登录</a>
+	</p>
+</div>
+</body>
+<script src="./js/project-path.js"></script>
+<script>
+	function jumpSearch(){
+		location.href="GlobelSearch.html?key="+encodeURI($("#key").val());
+	}
+	window.onload= function () {
+		loadData();
+	};
+	function loadData() {
+		$.ajax({
+			async: false,
+			type: "GET",
+			url: path + "/partner/list",
+			dataType: "json",
+			success: function (result) {
+				if (result.code == 0) {
+					$("#partnerList").empty();
+					var content = "";
+					$.each(result.data, function (index, obj) {
+						if (index == 0 || index == 6){
+							content += "<ul>"
+						}
+						if (index == 6){
+							content += "</ul>"
+						}
+						if (obj.partnerIsBlank == 'Y'){
+							content += "<li><a href='"+obj.partnerLinkAddr+"' target='_blank' title='"+obj.partnerName+"'><img src='"+obj.partnerImg+"'></a></li>"
+						}else{
+							content += "<li><a href='"+obj.partnerLinkAddr+"'  title='"+obj.partnerName+"'><img src='"+obj.partnerImg+"'></a></li>"
+						}
+					});
+					content += "</ul>";
+					$("#partnerList").append(content);
+				}
+			}
+		});
+	}
+</script>
+<script>
+	//创建和初始化地图函数：
+	function initMap(){
+		createMap();//创建地图
+		setMapEvent();//设置地图事件
+		addMapControl();//向地图添加控件
+		addMapOverlay();//向地图添加覆盖物
+	}
+	function createMap(){
+		map = new BMap.Map("map");
+		map.centerAndZoom(new BMap.Point(110.344396,25.290033),15);
+	}
+	function setMapEvent(){
+		map.enableScrollWheelZoom();
+		map.enableKeyboard();
+		map.enableDragging();
+		map.enableDoubleClickZoom()
+	}
+	function addClickHandler(target,window){
+		target.addEventListener("click",function(){
+			target.openInfoWindow(window);
+		});
+	}
+	function addMapOverlay(){
+		var markers = [
+			{content:"中国广西桂林市金鸡路1号",title:"桂电光子学研究中心",imageOffset: {width:0,height:3},position:{lat:25.290033,lng:110.344396}}
+		];
+		for(var index = 0; index < markers.length; index++ ){
+			var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);
+			var marker = new BMap.Marker(point,{icon:new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png",new BMap.Size(20,25),{
+					imageOffset: new BMap.Size(markers[index].imageOffset.width,markers[index].imageOffset.height)
+				})});
+			var label = new BMap.Label(markers[index].title,{offset: new BMap.Size(25,5)});
+			var opts = {
+				width: 200,
+				title: markers[index].title,
+				enableMessage: false
+			};
+			var infoWindow = new BMap.InfoWindow(markers[index].content,opts);
+			marker.setLabel(label);
+			addClickHandler(marker,infoWindow);
+			map.addOverlay(marker);
+		};
+		var labels = [
+		];
+		for(var index = 0; index < labels.length; index++){
+			var opt = { position: new BMap.Point(labels[index].position.lng,labels[index].position.lat )};
+			var label = new BMap.Label(labels[index].content,opt);
+			map.addOverlay(label);
+		};
+	}
+	//向地图添加控件
+	function addMapControl(){
+		var scaleControl = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+		scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
+		map.addControl(scaleControl);
+		var navControl = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+		map.addControl(navControl);
+		var overviewControl = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:true});
+		map.addControl(overviewControl);
+	}
+	var map;
+	initMap();//创建和初始化地图
+
+</script>
+<style>
+	.address p {
+		line-height: 30px;
+		font-size: 15px;
+		font-family: "microsoft yahei";
+		color: #666666;
+		text-indent: 40px;
+	}
+	.add-1 {
+		background: url(img/address.png) left center no-repeat;
+	}
+
+	.add-2 {
+		background: url(img/email.png) left center no-repeat;
+	}
+
+	.add-3 {
+		background: url(img/phone.png) left center no-repeat;
+	}
+	.add-4{
+		background: url(img/wechat.png) left center no-repeat;
+	}
+	.iw_poi_content {
+		font-size: 13px;
+	}
+
+	.yq-one {
+		width: 1140px;
+		padding: 0 30px 0 30px;
+		float: left;
+		margin-top: 55px;
+	}
+
+	.yq-one ul {
+		width: 1152px;
+	}
+
+	.yq-one ul li {
+		float: left;
+		margin-right: 13px;
+		width: 177px;
+		height: 68px;
+		overflow: hidden;
+		margin-bottom: 43px;
+	}
+	.yq-one a:hover img{
+		opacity: 0.8;
+	}
+	.iw_poi_title {
+		color: #CC5522;
+		font-size: 14px;
+		font-weight: bold;
+		overflow: hidden;
+		padding-right: 13px;
+		white-space: nowrap
+	}
+
+	.iw_poi_content {
+		font: 12px arial, sans-serif;
+		overflow: visible;
+		padding-top: 4px;
+		white-space: -moz-pre-wrap;
+		word-wrap: break-word
+	}
+</style>
+</html>

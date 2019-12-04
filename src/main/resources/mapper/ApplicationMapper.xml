@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="guet.hxm.rc.dao.ApplicationMapper" >
+  <resultMap id="BaseResultMap" type="guet.hxm.rc.entity.Application" >
+    <id column="application_id" property="applicationId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="native_add" property="nativeAdd" jdbcType="VARCHAR" />
+    <result column="domicile" property="domicile" jdbcType="VARCHAR" />
+    <result column="card_id" property="cardId" jdbcType="VARCHAR" />
+    <result column="home_add" property="homeAdd" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="agent_name" property="agentName" jdbcType="VARCHAR" />
+    <result column="agent_relative" property="agentRelative" jdbcType="VARCHAR" />
+    <result column="agent_telephone" property="agentTelephone" jdbcType="VARCHAR" />
+    <result column="academic_achi" property="academicAchi" jdbcType="VARCHAR" />
+    <result column="online_data" property="onlineData" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="school" property="school" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="research_field" property="researchField" jdbcType="VARCHAR" />
+    <result column="start_edu_time" property="startEduTime" jdbcType="DATE" />
+    <result column="end_edu_time" property="endEduTime" jdbcType="DATE" />
+    <result column="degree_status" property="degreeStatus" jdbcType="VARCHAR" />
+    <result column="degree_name" property="degreeName" jdbcType="VARCHAR" />
+    <result column="cource_score" property="courceScore" jdbcType="VARCHAR" />
+    <result column="main_language" property="mainLanguage" jdbcType="VARCHAR" />
+    <result column="language_name" property="languageName" jdbcType="VARCHAR" />
+    <result column="test_time" property="testTime" jdbcType="DATE" />
+    <result column="language_score" property="languageScore" jdbcType="VARCHAR" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="project_start_time" property="projectStartTime" jdbcType="DATE" />
+    <result column="project_end_time" property="projectEndTime" jdbcType="DATE" />
+    <result column="project_add" property="projectAdd" jdbcType="VARCHAR" />
+    <result column="project_explain" property="projectExplain" jdbcType="VARCHAR" />
+    <result column="experience_type" property="experienceType" jdbcType="VARCHAR" />
+    <result column="exper_start_time" property="experStartTime" jdbcType="DATE" />
+    <result column="exper_end_time" property="experEndTime" jdbcType="DATE" />
+    <result column="experience_add" property="experienceAdd" jdbcType="VARCHAR" />
+    <result column="experience_explain" property="experienceExplain" jdbcType="VARCHAR" />
+    <result column="honor" property="honor" jdbcType="VARCHAR" />
+    <result column="sanction" property="sanction" jdbcType="VARCHAR" />
+    <result column="sanction_expain" property="sanctionExpain" jdbcType="VARCHAR" />
+    <result column="referee_name" property="refereeName" jdbcType="VARCHAR" />
+    <result column="referee_telephone" property="refereeTelephone" jdbcType="VARCHAR" />
+    <result column="referee_company" property="refereeCompany" jdbcType="VARCHAR" />
+    <result column="referee_email" property="refereeEmail" jdbcType="VARCHAR" />
+    <result column="resume_file" property="resumeFile" jdbcType="VARCHAR" />
+    <result column="academic_file" property="academicFile" jdbcType="VARCHAR" />
+    <result column="score_file" property="scoreFile" jdbcType="VARCHAR" />
+    <result column="language_file" property="languageFile" jdbcType="VARCHAR" />
+    <result column="degree_file" property="degreeFile" jdbcType="VARCHAR" />
+    <result column="announce_name" property="announceName" jdbcType="VARCHAR" />
+    <result column="announce_time" property="announceTime" jdbcType="DATE" />
+    <result column="application_status" property="applicationStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    application_id, name, sex, birthday, nation, native_add, domicile, card_id, home_add, 
+    email, telephone, agent_name, agent_relative, agent_telephone, academic_achi, online_data, 
+    introduce, school, education, research_field, start_edu_time, end_edu_time, degree_status, 
+    degree_name, cource_score, main_language, language_name, test_time, language_score, 
+    project_name, project_start_time, project_end_time, project_add, project_explain, 
+    experience_type, exper_start_time, exper_end_time, experience_add, experience_explain, 
+    honor, sanction, sanction_expain, referee_name, referee_telephone, referee_company, 
+    referee_email, resume_file, academic_file, score_file, language_file, degree_file, 
+    announce_name, announce_time, application_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="guet.hxm.rc.entity.ApplicationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from application
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from application
+    where application_id = #{applicationId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from application
+    where application_id = #{applicationId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="guet.hxm.rc.entity.ApplicationExample" >
+    delete from application
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="guet.hxm.rc.entity.Application" >
+    insert into application (application_id, name, sex, 
+      birthday, nation, native_add, 
+      domicile, card_id, home_add, 
+      email, telephone, agent_name, 
+      agent_relative, agent_telephone, academic_achi, 
+      online_data, introduce, school, 
+      education, research_field, start_edu_time, 
+      end_edu_time, degree_status, degree_name, 
+      cource_score, main_language, language_name, 
+      test_time, language_score, project_name, 
+      project_start_time, project_end_time, project_add, 
+      project_explain, experience_type, exper_start_time, 
+      exper_end_time, experience_add, experience_explain, 
+      honor, sanction, sanction_expain, 
+      referee_name, referee_telephone, referee_company, 
+      referee_email, resume_file, academic_file, 
+      score_file, language_file, degree_file, 
+      announce_name, announce_time, application_status
+      )
+    values (#{applicationId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=DATE}, #{nation,jdbcType=VARCHAR}, #{nativeAdd,jdbcType=VARCHAR}, 
+      #{domicile,jdbcType=VARCHAR}, #{cardId,jdbcType=VARCHAR}, #{homeAdd,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{agentName,jdbcType=VARCHAR}, 
+      #{agentRelative,jdbcType=VARCHAR}, #{agentTelephone,jdbcType=VARCHAR}, #{academicAchi,jdbcType=VARCHAR}, 
+      #{onlineData,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, 
+      #{education,jdbcType=VARCHAR}, #{researchField,jdbcType=VARCHAR}, #{startEduTime,jdbcType=DATE}, 
+      #{endEduTime,jdbcType=DATE}, #{degreeStatus,jdbcType=VARCHAR}, #{degreeName,jdbcType=VARCHAR}, 
+      #{courceScore,jdbcType=VARCHAR}, #{mainLanguage,jdbcType=VARCHAR}, #{languageName,jdbcType=VARCHAR}, 
+      #{testTime,jdbcType=DATE}, #{languageScore,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, 
+      #{projectStartTime,jdbcType=DATE}, #{projectEndTime,jdbcType=DATE}, #{projectAdd,jdbcType=VARCHAR}, 
+      #{projectExplain,jdbcType=VARCHAR}, #{experienceType,jdbcType=VARCHAR}, #{experStartTime,jdbcType=DATE}, 
+      #{experEndTime,jdbcType=DATE}, #{experienceAdd,jdbcType=VARCHAR}, #{experienceExplain,jdbcType=VARCHAR}, 
+      #{honor,jdbcType=VARCHAR}, #{sanction,jdbcType=VARCHAR}, #{sanctionExpain,jdbcType=VARCHAR}, 
+      #{refereeName,jdbcType=VARCHAR}, #{refereeTelephone,jdbcType=VARCHAR}, #{refereeCompany,jdbcType=VARCHAR}, 
+      #{refereeEmail,jdbcType=VARCHAR}, #{resumeFile,jdbcType=VARCHAR}, #{academicFile,jdbcType=VARCHAR}, 
+      #{scoreFile,jdbcType=VARCHAR}, #{languageFile,jdbcType=VARCHAR}, #{degreeFile,jdbcType=VARCHAR}, 
+      #{announceName,jdbcType=VARCHAR}, #{announceTime,jdbcType=DATE}, #{applicationStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="guet.hxm.rc.entity.Application" >
+    insert into application
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="applicationId != null" >
+        application_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="nativeAdd != null" >
+        native_add,
+      </if>
+      <if test="domicile != null" >
+        domicile,
+      </if>
+      <if test="cardId != null" >
+        card_id,
+      </if>
+      <if test="homeAdd != null" >
+        home_add,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="agentName != null" >
+        agent_name,
+      </if>
+      <if test="agentRelative != null" >
+        agent_relative,
+      </if>
+      <if test="agentTelephone != null" >
+        agent_telephone,
+      </if>
+      <if test="academicAchi != null" >
+        academic_achi,
+      </if>
+      <if test="onlineData != null" >
+        online_data,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="school != null" >
+        school,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="researchField != null" >
+        research_field,
+      </if>
+      <if test="startEduTime != null" >
+        start_edu_time,
+      </if>
+      <if test="endEduTime != null" >
+        end_edu_time,
+      </if>
+      <if test="degreeStatus != null" >
+        degree_status,
+      </if>
+      <if test="degreeName != null" >
+        degree_name,
+      </if>
+      <if test="courceScore != null" >
+        cource_score,
+      </if>
+      <if test="mainLanguage != null" >
+        main_language,
+      </if>
+      <if test="languageName != null" >
+        language_name,
+      </if>
+      <if test="testTime != null" >
+        test_time,
+      </if>
+      <if test="languageScore != null" >
+        language_score,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="projectStartTime != null" >
+        project_start_time,
+      </if>
+      <if test="projectEndTime != null" >
+        project_end_time,
+      </if>
+      <if test="projectAdd != null" >
+        project_add,
+      </if>
+      <if test="projectExplain != null" >
+        project_explain,
+      </if>
+      <if test="experienceType != null" >
+        experience_type,
+      </if>
+      <if test="experStartTime != null" >
+        exper_start_time,
+      </if>
+      <if test="experEndTime != null" >
+        exper_end_time,
+      </if>
+      <if test="experienceAdd != null" >
+        experience_add,
+      </if>
+      <if test="experienceExplain != null" >
+        experience_explain,
+      </if>
+      <if test="honor != null" >
+        honor,
+      </if>
+      <if test="sanction != null" >
+        sanction,
+      </if>
+      <if test="sanctionExpain != null" >
+        sanction_expain,
+      </if>
+      <if test="refereeName != null" >
+        referee_name,
+      </if>
+      <if test="refereeTelephone != null" >
+        referee_telephone,
+      </if>
+      <if test="refereeCompany != null" >
+        referee_company,
+      </if>
+      <if test="refereeEmail != null" >
+        referee_email,
+      </if>
+      <if test="resumeFile != null" >
+        resume_file,
+      </if>
+      <if test="academicFile != null" >
+        academic_file,
+      </if>
+      <if test="scoreFile != null" >
+        score_file,
+      </if>
+      <if test="languageFile != null" >
+        language_file,
+      </if>
+      <if test="degreeFile != null" >
+        degree_file,
+      </if>
+      <if test="announceName != null" >
+        announce_name,
+      </if>
+      <if test="announceTime != null" >
+        announce_time,
+      </if>
+      <if test="applicationStatus != null" >
+        application_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="applicationId != null" >
+        #{applicationId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeAdd != null" >
+        #{nativeAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="domicile != null" >
+        #{domicile,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAdd != null" >
+        #{homeAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="agentName != null" >
+        #{agentName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentRelative != null" >
+        #{agentRelative,jdbcType=VARCHAR},
+      </if>
+      <if test="agentTelephone != null" >
+        #{agentTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="academicAchi != null" >
+        #{academicAchi,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineData != null" >
+        #{onlineData,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="researchField != null" >
+        #{researchField,jdbcType=VARCHAR},
+      </if>
+      <if test="startEduTime != null" >
+        #{startEduTime,jdbcType=DATE},
+      </if>
+      <if test="endEduTime != null" >
+        #{endEduTime,jdbcType=DATE},
+      </if>
+      <if test="degreeStatus != null" >
+        #{degreeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="degreeName != null" >
+        #{degreeName,jdbcType=VARCHAR},
+      </if>
+      <if test="courceScore != null" >
+        #{courceScore,jdbcType=VARCHAR},
+      </if>
+      <if test="mainLanguage != null" >
+        #{mainLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="languageName != null" >
+        #{languageName,jdbcType=VARCHAR},
+      </if>
+      <if test="testTime != null" >
+        #{testTime,jdbcType=DATE},
+      </if>
+      <if test="languageScore != null" >
+        #{languageScore,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectStartTime != null" >
+        #{projectStartTime,jdbcType=DATE},
+      </if>
+      <if test="projectEndTime != null" >
+        #{projectEndTime,jdbcType=DATE},
+      </if>
+      <if test="projectAdd != null" >
+        #{projectAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="projectExplain != null" >
+        #{projectExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="experienceType != null" >
+        #{experienceType,jdbcType=VARCHAR},
+      </if>
+      <if test="experStartTime != null" >
+        #{experStartTime,jdbcType=DATE},
+      </if>
+      <if test="experEndTime != null" >
+        #{experEndTime,jdbcType=DATE},
+      </if>
+      <if test="experienceAdd != null" >
+        #{experienceAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="experienceExplain != null" >
+        #{experienceExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="honor != null" >
+        #{honor,jdbcType=VARCHAR},
+      </if>
+      <if test="sanction != null" >
+        #{sanction,jdbcType=VARCHAR},
+      </if>
+      <if test="sanctionExpain != null" >
+        #{sanctionExpain,jdbcType=VARCHAR},
+      </if>
+      <if test="refereeName != null" >
+        #{refereeName,jdbcType=VARCHAR},
+      </if>
+      <if test="refereeTelephone != null" >
+        #{refereeTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="refereeCompany != null" >
+        #{refereeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="refereeEmail != null" >
+        #{refereeEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeFile != null" >
+        #{resumeFile,jdbcType=VARCHAR},
+      </if>
+      <if test="academicFile != null" >
+        #{academicFile,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreFile != null" >
+        #{scoreFile,jdbcType=VARCHAR},
+      </if>
+      <if test="languageFile != null" >
+        #{languageFile,jdbcType=VARCHAR},
+      </if>
+      <if test="degreeFile != null" >
+        #{degreeFile,jdbcType=VARCHAR},
+      </if>
+      <if test="announceName != null" >
+        #{announceName,jdbcType=VARCHAR},
+      </if>
+      <if test="announceTime != null" >
+        #{announceTime,jdbcType=DATE},
+      </if>
+      <if test="applicationStatus != null" >
+        #{applicationStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="guet.hxm.rc.entity.ApplicationExample" resultType="java.lang.Integer" >
+    select count(*) from application
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update application
+    <set >
+      <if test="record.applicationId != null" >
+        application_id = #{record.applicationId,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=DATE},
+      </if>
+      <if test="record.nation != null" >
+        nation = #{record.nation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nativeAdd != null" >
+        native_add = #{record.nativeAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.domicile != null" >
+        domicile = #{record.domicile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardId != null" >
+        card_id = #{record.cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.homeAdd != null" >
+        home_add = #{record.homeAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone != null" >
+        telephone = #{record.telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agentName != null" >
+        agent_name = #{record.agentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agentRelative != null" >
+        agent_relative = #{record.agentRelative,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agentTelephone != null" >
+        agent_telephone = #{record.agentTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.academicAchi != null" >
+        academic_achi = #{record.academicAchi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineData != null" >
+        online_data = #{record.onlineData,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introduce != null" >
+        introduce = #{record.introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="record.school != null" >
+        school = #{record.school,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education != null" >
+        education = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.researchField != null" >
+        research_field = #{record.researchField,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startEduTime != null" >
+        start_edu_time = #{record.startEduTime,jdbcType=DATE},
+      </if>
+      <if test="record.endEduTime != null" >
+        end_edu_time = #{record.endEduTime,jdbcType=DATE},
+      </if>
+      <if test="record.degreeStatus != null" >
+        degree_status = #{record.degreeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.degreeName != null" >
+        degree_name = #{record.degreeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courceScore != null" >
+        cource_score = #{record.courceScore,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainLanguage != null" >
+        main_language = #{record.mainLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.languageName != null" >
+        language_name = #{record.languageName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testTime != null" >
+        test_time = #{record.testTime,jdbcType=DATE},
+      </if>
+      <if test="record.languageScore != null" >
+        language_score = #{record.languageScore,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectName != null" >
+        project_name = #{record.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectStartTime != null" >
+        project_start_time = #{record.projectStartTime,jdbcType=DATE},
+      </if>
+      <if test="record.projectEndTime != null" >
+        project_end_time = #{record.projectEndTime,jdbcType=DATE},
+      </if>
+      <if test="record.projectAdd != null" >
+        project_add = #{record.projectAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectExplain != null" >
+        project_explain = #{record.projectExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experienceType != null" >
+        experience_type = #{record.experienceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experStartTime != null" >
+        exper_start_time = #{record.experStartTime,jdbcType=DATE},
+      </if>
+      <if test="record.experEndTime != null" >
+        exper_end_time = #{record.experEndTime,jdbcType=DATE},
+      </if>
+      <if test="record.experienceAdd != null" >
+        experience_add = #{record.experienceAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experienceExplain != null" >
+        experience_explain = #{record.experienceExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.honor != null" >
+        honor = #{record.honor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sanction != null" >
+        sanction = #{record.sanction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sanctionExpain != null" >
+        sanction_expain = #{record.sanctionExpain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refereeName != null" >
+        referee_name = #{record.refereeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refereeTelephone != null" >
+        referee_telephone = #{record.refereeTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refereeCompany != null" >
+        referee_company = #{record.refereeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refereeEmail != null" >
+        referee_email = #{record.refereeEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resumeFile != null" >
+        resume_file = #{record.resumeFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.academicFile != null" >
+        academic_file = #{record.academicFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scoreFile != null" >
+        score_file = #{record.scoreFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.languageFile != null" >
+        language_file = #{record.languageFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.degreeFile != null" >
+        degree_file = #{record.degreeFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.announceName != null" >
+        announce_name = #{record.announceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.announceTime != null" >
+        announce_time = #{record.announceTime,jdbcType=DATE},
+      </if>
+      <if test="record.applicationStatus != null" >
+        application_status = #{record.applicationStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update application
+    set application_id = #{record.applicationId,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=DATE},
+      nation = #{record.nation,jdbcType=VARCHAR},
+      native_add = #{record.nativeAdd,jdbcType=VARCHAR},
+      domicile = #{record.domicile,jdbcType=VARCHAR},
+      card_id = #{record.cardId,jdbcType=VARCHAR},
+      home_add = #{record.homeAdd,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      telephone = #{record.telephone,jdbcType=VARCHAR},
+      agent_name = #{record.agentName,jdbcType=VARCHAR},
+      agent_relative = #{record.agentRelative,jdbcType=VARCHAR},
+      agent_telephone = #{record.agentTelephone,jdbcType=VARCHAR},
+      academic_achi = #{record.academicAchi,jdbcType=VARCHAR},
+      online_data = #{record.onlineData,jdbcType=VARCHAR},
+      introduce = #{record.introduce,jdbcType=VARCHAR},
+      school = #{record.school,jdbcType=VARCHAR},
+      education = #{record.education,jdbcType=VARCHAR},
+      research_field = #{record.researchField,jdbcType=VARCHAR},
+      start_edu_time = #{record.startEduTime,jdbcType=DATE},
+      end_edu_time = #{record.endEduTime,jdbcType=DATE},
+      degree_status = #{record.degreeStatus,jdbcType=VARCHAR},
+      degree_name = #{record.degreeName,jdbcType=VARCHAR},
+      cource_score = #{record.courceScore,jdbcType=VARCHAR},
+      main_language = #{record.mainLanguage,jdbcType=VARCHAR},
+      language_name = #{record.languageName,jdbcType=VARCHAR},
+      test_time = #{record.testTime,jdbcType=DATE},
+      language_score = #{record.languageScore,jdbcType=VARCHAR},
+      project_name = #{record.projectName,jdbcType=VARCHAR},
+      project_start_time = #{record.projectStartTime,jdbcType=DATE},
+      project_end_time = #{record.projectEndTime,jdbcType=DATE},
+      project_add = #{record.projectAdd,jdbcType=VARCHAR},
+      project_explain = #{record.projectExplain,jdbcType=VARCHAR},
+      experience_type = #{record.experienceType,jdbcType=VARCHAR},
+      exper_start_time = #{record.experStartTime,jdbcType=DATE},
+      exper_end_time = #{record.experEndTime,jdbcType=DATE},
+      experience_add = #{record.experienceAdd,jdbcType=VARCHAR},
+      experience_explain = #{record.experienceExplain,jdbcType=VARCHAR},
+      honor = #{record.honor,jdbcType=VARCHAR},
+      sanction = #{record.sanction,jdbcType=VARCHAR},
+      sanction_expain = #{record.sanctionExpain,jdbcType=VARCHAR},
+      referee_name = #{record.refereeName,jdbcType=VARCHAR},
+      referee_telephone = #{record.refereeTelephone,jdbcType=VARCHAR},
+      referee_company = #{record.refereeCompany,jdbcType=VARCHAR},
+      referee_email = #{record.refereeEmail,jdbcType=VARCHAR},
+      resume_file = #{record.resumeFile,jdbcType=VARCHAR},
+      academic_file = #{record.academicFile,jdbcType=VARCHAR},
+      score_file = #{record.scoreFile,jdbcType=VARCHAR},
+      language_file = #{record.languageFile,jdbcType=VARCHAR},
+      degree_file = #{record.degreeFile,jdbcType=VARCHAR},
+      announce_name = #{record.announceName,jdbcType=VARCHAR},
+      announce_time = #{record.announceTime,jdbcType=DATE},
+      application_status = #{record.applicationStatus,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="guet.hxm.rc.entity.Application" >
+    update application
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeAdd != null" >
+        native_add = #{nativeAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="domicile != null" >
+        domicile = #{domicile,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        card_id = #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAdd != null" >
+        home_add = #{homeAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="agentName != null" >
+        agent_name = #{agentName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentRelative != null" >
+        agent_relative = #{agentRelative,jdbcType=VARCHAR},
+      </if>
+      <if test="agentTelephone != null" >
+        agent_telephone = #{agentTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="academicAchi != null" >
+        academic_achi = #{academicAchi,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineData != null" >
+        online_data = #{onlineData,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="researchField != null" >
+        research_field = #{researchField,jdbcType=VARCHAR},
+      </if>
+      <if test="startEduTime != null" >
+        start_edu_time = #{startEduTime,jdbcType=DATE},
+      </if>
+      <if test="endEduTime != null" >
+        end_edu_time = #{endEduTime,jdbcType=DATE},
+      </if>
+      <if test="degreeStatus != null" >
+        degree_status = #{degreeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="degreeName != null" >
+        degree_name = #{degreeName,jdbcType=VARCHAR},
+      </if>
+      <if test="courceScore != null" >
+        cource_score = #{courceScore,jdbcType=VARCHAR},
+      </if>
+      <if test="mainLanguage != null" >
+        main_language = #{mainLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="languageName != null" >
+        language_name = #{languageName,jdbcType=VARCHAR},
+      </if>
+      <if test="testTime != null" >
+        test_time = #{testTime,jdbcType=DATE},
+      </if>
+      <if test="languageScore != null" >
+        language_score = #{languageScore,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectStartTime != null" >
+        project_start_time = #{projectStartTime,jdbcType=DATE},
+      </if>
+      <if test="projectEndTime != null" >
+        project_end_time = #{projectEndTime,jdbcType=DATE},
+      </if>
+      <if test="projectAdd != null" >
+        project_add = #{projectAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="projectExplain != null" >
+        project_explain = #{projectExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="experienceType != null" >
+        experience_type = #{experienceType,jdbcType=VARCHAR},
+      </if>
+      <if test="experStartTime != null" >
+        exper_start_time = #{experStartTime,jdbcType=DATE},
+      </if>
+      <if test="experEndTime != null" >
+        exper_end_time = #{experEndTime,jdbcType=DATE},
+      </if>
+      <if test="experienceAdd != null" >
+        experience_add = #{experienceAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="experienceExplain != null" >
+        experience_explain = #{experienceExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="honor != null" >
+        honor = #{honor,jdbcType=VARCHAR},
+      </if>
+      <if test="sanction != null" >
+        sanction = #{sanction,jdbcType=VARCHAR},
+      </if>
+      <if test="sanctionExpain != null" >
+        sanction_expain = #{sanctionExpain,jdbcType=VARCHAR},
+      </if>
+      <if test="refereeName != null" >
+        referee_name = #{refereeName,jdbcType=VARCHAR},
+      </if>
+      <if test="refereeTelephone != null" >
+        referee_telephone = #{refereeTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="refereeCompany != null" >
+        referee_company = #{refereeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="refereeEmail != null" >
+        referee_email = #{refereeEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeFile != null" >
+        resume_file = #{resumeFile,jdbcType=VARCHAR},
+      </if>
+      <if test="academicFile != null" >
+        academic_file = #{academicFile,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreFile != null" >
+        score_file = #{scoreFile,jdbcType=VARCHAR},
+      </if>
+      <if test="languageFile != null" >
+        language_file = #{languageFile,jdbcType=VARCHAR},
+      </if>
+      <if test="degreeFile != null" >
+        degree_file = #{degreeFile,jdbcType=VARCHAR},
+      </if>
+      <if test="announceName != null" >
+        announce_name = #{announceName,jdbcType=VARCHAR},
+      </if>
+      <if test="announceTime != null" >
+        announce_time = #{announceTime,jdbcType=DATE},
+      </if>
+      <if test="applicationStatus != null" >
+        application_status = #{applicationStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where application_id = #{applicationId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="guet.hxm.rc.entity.Application" >
+    update application
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      nation = #{nation,jdbcType=VARCHAR},
+      native_add = #{nativeAdd,jdbcType=VARCHAR},
+      domicile = #{domicile,jdbcType=VARCHAR},
+      card_id = #{cardId,jdbcType=VARCHAR},
+      home_add = #{homeAdd,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      agent_name = #{agentName,jdbcType=VARCHAR},
+      agent_relative = #{agentRelative,jdbcType=VARCHAR},
+      agent_telephone = #{agentTelephone,jdbcType=VARCHAR},
+      academic_achi = #{academicAchi,jdbcType=VARCHAR},
+      online_data = #{onlineData,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      research_field = #{researchField,jdbcType=VARCHAR},
+      start_edu_time = #{startEduTime,jdbcType=DATE},
+      end_edu_time = #{endEduTime,jdbcType=DATE},
+      degree_status = #{degreeStatus,jdbcType=VARCHAR},
+      degree_name = #{degreeName,jdbcType=VARCHAR},
+      cource_score = #{courceScore,jdbcType=VARCHAR},
+      main_language = #{mainLanguage,jdbcType=VARCHAR},
+      language_name = #{languageName,jdbcType=VARCHAR},
+      test_time = #{testTime,jdbcType=DATE},
+      language_score = #{languageScore,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      project_start_time = #{projectStartTime,jdbcType=DATE},
+      project_end_time = #{projectEndTime,jdbcType=DATE},
+      project_add = #{projectAdd,jdbcType=VARCHAR},
+      project_explain = #{projectExplain,jdbcType=VARCHAR},
+      experience_type = #{experienceType,jdbcType=VARCHAR},
+      exper_start_time = #{experStartTime,jdbcType=DATE},
+      exper_end_time = #{experEndTime,jdbcType=DATE},
+      experience_add = #{experienceAdd,jdbcType=VARCHAR},
+      experience_explain = #{experienceExplain,jdbcType=VARCHAR},
+      honor = #{honor,jdbcType=VARCHAR},
+      sanction = #{sanction,jdbcType=VARCHAR},
+      sanction_expain = #{sanctionExpain,jdbcType=VARCHAR},
+      referee_name = #{refereeName,jdbcType=VARCHAR},
+      referee_telephone = #{refereeTelephone,jdbcType=VARCHAR},
+      referee_company = #{refereeCompany,jdbcType=VARCHAR},
+      referee_email = #{refereeEmail,jdbcType=VARCHAR},
+      resume_file = #{resumeFile,jdbcType=VARCHAR},
+      academic_file = #{academicFile,jdbcType=VARCHAR},
+      score_file = #{scoreFile,jdbcType=VARCHAR},
+      language_file = #{languageFile,jdbcType=VARCHAR},
+      degree_file = #{degreeFile,jdbcType=VARCHAR},
+      announce_name = #{announceName,jdbcType=VARCHAR},
+      announce_time = #{announceTime,jdbcType=DATE},
+      application_status = #{applicationStatus,jdbcType=VARCHAR}
+    where application_id = #{applicationId,jdbcType=BIGINT}
+  </update>
+</mapper>
